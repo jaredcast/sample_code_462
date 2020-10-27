@@ -1,5 +1,5 @@
 #include "Domain/Session/Session.hpp"
-
+#include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include <string>
 #include <any>
 #include <vector>
@@ -10,12 +10,10 @@ namespace  // anonymous (private) working area
   #define STUB(functionName)  std::any functionName( Domain::Session::SessionBase & /*session*/, const std::vector<std::string> & /*args*/ ) \
                               { return {}; }  // Stubbed for now
 
-  
-  STUB( bookFlight     ) //Make this a legit function
   STUB( resetAccount )
   STUB( help         )
   STUB( shutdown     )
-
+  STUB( bookFlight )
   //Replace later
   // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
   // {
@@ -26,8 +24,13 @@ namespace  // anonymous (private) working area
   // }
 }    // anonymous (private) working area
 
+// std::any bookFlight( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
+//   {
+    
+//     // TO-DO  Verify there is such a book and the mark the book as being checked out by user
+//     std::vector<std::vector<std::string>> listOfFlights = 
 
-
+//   }
 
 
 

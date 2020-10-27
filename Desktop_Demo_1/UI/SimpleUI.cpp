@@ -118,10 +118,10 @@ namespace UI
       ******************************************************************************************************************************/
       if( selectedCommand == "Book Flight" )
       {
-        std::vector<std::string> parameters( 3 );
+        std::vector<std::string> parameters( 4 );
 
         std::cout << " Enter origin:  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[0] );
-        std::cout << " Enter destination:  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
+        std::cout << " Enter destination:  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[1] );
         std::cout << " Enter departure date (mm/dd/yyyy):  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
         std::cout << " Enter return date (mm/dd/yyyy):  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
 
