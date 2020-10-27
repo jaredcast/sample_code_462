@@ -36,7 +36,7 @@ namespace UI
 
       auto session  = Domain::Session::SessionHandler::createSession( {"jared@csuf.com", "password", {"Customer"}} );
       auto commands = session->getCommands();
-      auto results  = session->executeCommand( "Checkout Book", {"Applied UML and Patterns", "Larman", "0-13-148906-2"} );
+      auto results  = session->executeCommand( "Checkout Book", {"Applied UML and Patterns", "Larman", "0-13-148906-2"} ); //fix me
       //session->singOff();
 
       _logger << "Completed scenario 1";

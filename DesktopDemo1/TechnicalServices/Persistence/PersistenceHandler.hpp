@@ -18,7 +18,18 @@ namespace TechnicalServices::Persistence
     std::vector<std::string>  roles;
   };
 
-
+  struct Flight {
+    std::string               departure;
+    std::string               destination;
+    std::string               deptDate;
+    std::string               returnDate;
+    std::string               stops;
+    int                       price;
+    std::string               trip;
+    std::string               weather;
+    std::string               status;
+  };
+  
 
 
   // Persistence Package within the Technical Services Layer Abstract class
@@ -41,7 +52,7 @@ namespace TechnicalServices::Persistence
       // Operations
       virtual std::vector<std::string> findRoles()                                       = 0;   // Returns list of all legal roles
       virtual UserCredentials          findCredentialsByName( const std::string & name ) = 0;   // Returns credentials for specified user, throws NoSuchUser if user not found
-
+      
 
       // Adaptation Data read only access.  Adaptation data is a Key/Value pair
       // Throws NoSuchProperty

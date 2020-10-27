@@ -116,13 +116,14 @@ namespace UI
       **     no coupling. This can be achieved in a variety of ways, but one common way is to pass strings instead of strong typed
       **     parameters.
       ******************************************************************************************************************************/
-      if( selectedCommand == "Checkout Book" )
+      if( selectedCommand == "Book Flight" )
       {
         std::vector<std::string> parameters( 3 );
 
-        std::cout << " Enter book's title:  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[0] );
-        std::cout << " Enter book's author: ";  std::cin >> std::ws;  std::getline( std::cin, parameters[1] );
-        std::cout << " Enter book's ISBN:   ";  std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
+        std::cout << " Enter origin:  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[0] );
+        std::cout << " Enter destination:  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
+        std::cout << " Enter departure date (mm/dd/yyyy):  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
+        std::cout << " Enter return date (mm/dd/yyyy):  ";  std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
 
         auto results = sessionControl->executeCommand( selectedCommand, parameters );
         if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';

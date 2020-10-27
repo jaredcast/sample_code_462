@@ -91,7 +91,30 @@ namespace TechnicalServices::Persistence
     return { "Administrator", "Customer" };
   }
 
+  //Add in the flights 
+  std::vector<std::vector<std::string>> SimpleDB::getFlights(const std::string destination, const std::string arrival, const std::string dept)
+  {
+    std::vector<std::vector<std::string>> matchFlights;
 
+    // static std::vector<Flight> listOfFlights = {
+    //   // Departure, Destination, Departure date, return date, Stops, Price, Trip, Weather, Status
+    //   {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open"},
+    //   {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open"}
+    // };
+
+    std::vector<std::vector<std::string>> listOfFlights = {
+      // Departure, Destination, Departure date, return date, Stops, Price, Trip, Weather, Status
+      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open"},
+      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open"}
+    };
+    for (auto flight : listOfFlights) {
+      bool destinationCheck = (std::find(flight.begin(), flight.end(), destination) != flight.end());
+      bool arrivalCheck = (std::find(flight.begin(), flight.end(), arrival) != flight.end());
+      bool deptCheck = (std::find(flight.begin(), flight.end(), dept) != flight.end());
+      if (destinationCheck && arrivalCheck && deptCheck) { matchFlights.push_back(flight); }
+    }
+    return matchFlights;
+  }
 
 
   UserCredentials SimpleDB::findCredentialsByName( const std::string & name )
