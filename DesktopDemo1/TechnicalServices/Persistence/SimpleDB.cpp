@@ -1,4 +1,4 @@
-#include "SimpleDB.hpp"
+#include "TechnicalServices/Persistence/SimpleDB.hpp"
 
 #include <fstream>    // streamsize
 #include <iomanip>    // quoted()
@@ -7,8 +7,8 @@
 #include <string>
 #include <vector>
 
-#include "../Logging/SimpleLogger.hpp"
-#include "../Persistence/PersistenceHandler.hpp"
+#include "TechnicalServices/Logging/SimpleLogger.hpp"
+#include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 
 
 

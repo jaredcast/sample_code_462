@@ -1,4 +1,4 @@
-#include "../UI/SimpleUI.hpp"
+#include "UI/SimpleUI.hpp"
 
 #include <any>         // any_cast()
 #include <iomanip>     // setw()
@@ -8,11 +8,11 @@
 #include <string>      // string, getline()
 #include <vector>
 
-#include "../Domain/Library/Books.hpp"    // Include for now - will replace next increment
-#include "../Domain/Session/SessionHandler.hpp"
+#include "Domain/Library/Flights.hpp"    // Include for now - will replace next increment
+#include "Domain/Session/SessionHandler.hpp"
 
-#include "../TechnicalServices/Logging/LoggerHandler.hpp"
-#include "../TechnicalServices/Persistence/PersistenceHandler.hpp"
+#include "TechnicalServices/Logging/LoggerHandler.hpp"
+#include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 
 
 
@@ -21,7 +21,7 @@ namespace UI
 {
   // Default constructor
   SimpleUI::SimpleUI()
-  : _bookHandler   ( std::make_unique<Domain::Library::Books>()                     ),   // will replace these with factory calls in the next increment
+  : _flightHandler   ( std::make_unique<Domain::Library::Flights>()                     ),   // will replace these with factory calls in the next increment
     _loggerPtr     ( TechnicalServices::Logging::LoggerHandler::create()            ),
     _persistentData( TechnicalServices::Persistence::PersistenceHandler::instance() )
   {

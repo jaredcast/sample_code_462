@@ -1,11 +1,11 @@
-#include "UserInterfaceHandler.hpp"
+#include "UI/UserInterfaceHandler.hpp"
 
 #include <memory>    // unique_ptr, make_unique
 
-#include "../TechnicalServices/Persistence/PersistenceHandler.hpp"
+#include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 
-#include "SimpleUI.hpp"
-#include "SystemDriverUI.hpp"
+#include "UI/SimpleUI.hpp"
+#include "UI/SystemDriverUI.hpp"
 
 
 

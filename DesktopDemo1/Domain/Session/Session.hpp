@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 
-#include "../Session/SessionHandler.hpp"
-#include "../../TechnicalServices/Logging/LoggerHandler.hpp"
+#include "Domain/Session/SessionHandler.hpp"
+#include "TechnicalServices/Logging/LoggerHandler.hpp"
 
 
 namespace Domain::Session

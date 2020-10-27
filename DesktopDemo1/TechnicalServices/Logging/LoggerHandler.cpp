@@ -1,8 +1,8 @@
 #include <memory>    // unique_ptr
 
-#include "../Logging/LoggerHandler.hpp"
-#include "../Logging/SimpleLogger.hpp"
-#include "../Persistence/PersistenceHandler.hpp"
+#include "TechnicalServices/Logging/LoggerHandler.hpp"
+#include "TechnicalServices/Logging/SimpleLogger.hpp"
+#include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 
 
 namespace TechnicalServices::Logging

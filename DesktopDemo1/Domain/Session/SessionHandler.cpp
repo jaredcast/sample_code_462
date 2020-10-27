@@ -1,12 +1,13 @@
-#include "SessionHandler.hpp"
+#include "Domain/Session/SessionHandler.hpp"
 
 #include <algorithm>    // std::any_of()
 #include <memory>       // unique_ptr, make_unique<>()
 #include <stdexcept>    // logic_error
 #include <string>
 
-#include "Session.hpp"
-#include "../../TechnicalServices/Persistence/PersistenceHandler.hpp"
+#include "Domain/Session/Session.hpp"
+
+#include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 
 
 

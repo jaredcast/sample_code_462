@@ -1,8 +1,8 @@
-#include "SystemDriverUI.hpp"
+#include "UI/SystemDriverUI.hpp"
 
-#include "../Domain/Session/SessionHandler.hpp"
+#include "Domain/Session/SessionHandler.hpp"
 
-#include "../TechnicalServices/Logging/LoggerHandler.hpp"
+#include "TechnicalServices/Logging/LoggerHandler.hpp"
 
 
 
@@ -40,6 +40,7 @@ namespace UI
       //session->singOff();
 
       _logger << "Completed scenario 1";
+      system( "PAUSE" ); //pauses the automatic scenario
     }
   }
 }    // namespace UI
