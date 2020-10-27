@@ -13,7 +13,7 @@ namespace  // anonymous (private) working area
   STUB( resetAccount )
   STUB( help         )
   STUB( shutdown     )
-  STUB( bookFlight )
+  //STUB( bookFlight )
   //Replace later
   // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
   // {
@@ -22,21 +22,43 @@ namespace  // anonymous (private) working area
   //   session._logger << "checkoutBook:  " + results;
   //   return {results};
   // }
+
+  std::vector<std::vector<std::string>> getFlights(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
+  {
+    const std::string origin = args[0];
+    const std::string destination = args[1]; 
+    const std::string dept = args[2];
+    const std::string ret = args[3];
+    std::vector<std::vector<std::string>> matchFlights;
+    std::vector<std::vector<std::string>> listOfFlights = {
+      // Origin, Destination, Departure date, return date, Stops, Price, Trip, Weather, Status
+      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open"},
+      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open"}
+    };
+    for (auto flight : listOfFlights) {
+      bool oriCheck = (std::find(flight.begin(), flight.end(), origin) != flight.end());
+      bool destinationCheck = (std::find(flight.begin(), flight.end(), destination) != flight.end());
+      bool deptCheck = (std::find(flight.begin(), flight.end(), dept) != flight.end());
+      bool retCheck = (std::find(flight.begin(), flight.end(), ret) != flight.end());
+      if (oriCheck && destinationCheck && deptCheck && retCheck) { matchFlights.push_back(flight); }
+    }
+    return matchFlights;
+  }
+
+
+  std::any bookFlight( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
+  {
+    std::vector<std::vector<std::string>> results = getFlights(session, args);
+    std::cout << "Flights returned: \n";
+    for (auto flight : results) {
+      for (int x = 0; x < flight.size(); x++) {
+        std::cout << flight[x] << " ";
+      }
+      std::cout << "\n";
+    }
+    return {results};
+  }
 }    // anonymous (private) working area
-
-// std::any bookFlight( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
-//   {
-    
-//     // TO-DO  Verify there is such a book and the mark the book as being checked out by user
-//     std::vector<std::vector<std::string>> listOfFlights = 
-
-//   }
-
-
-
-
-
-
 
 namespace Domain::Session
 {

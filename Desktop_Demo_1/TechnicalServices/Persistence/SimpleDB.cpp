@@ -92,38 +92,30 @@ namespace TechnicalServices::Persistence
   }
 
   //Add in the flights 
-  std::vector<std::vector<std::string>> SimpleDB::getFlights(const std::string origin, const std::string destination, const std::string dept, const std::string ret)
-  {
-    std::vector<std::vector<std::string>> matchFlights;
+  // std::vector<std::vector<std::string>> SimpleDB::getFlights(const std::string origin, const std::string destination, const std::string dept, const std::string ret)
+  // {
+  //   std::vector<std::vector<std::string>> matchFlights;
+  //   std::vector<std::vector<std::string>> listOfFlights = {
+  //     // Origin, Destination, Departure date, return date, Stops, Price, Trip, Weather, Status
+  //     {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open"},
+  //     {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open"}
+  //   };
+  //   for (auto flight : listOfFlights) {
+  //     bool oriCheck = (std::find(flight.begin(), flight.end(), origin) != flight.end());
+  //     bool destinationCheck = (std::find(flight.begin(), flight.end(), destination) != flight.end());
+  //     bool deptCheck = (std::find(flight.begin(), flight.end(), dept) != flight.end());
+  //     bool retCheck = (std::find(flight.begin(), flight.end(), ret) != flight.end());
+  //     if (oriCheck && destinationCheck && deptCheck && retCheck) { matchFlights.push_back(flight); }
+  //   }
 
-    // static std::vector<Flight> listOfFlights = {
-    //   // Departure, Destination, Departure date, return date, Stops, Price, Trip, Weather, Status
-    //   {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open"},
-    //   {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open"}
-    // };
-
-    std::vector<std::vector<std::string>> listOfFlights = {
-      // Origin, Destination, Departure date, return date, Stops, Price, Trip, Weather, Status
-      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open"},
-      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open"}
-    };
-    for (auto flight : listOfFlights) {
-      bool oriCheck = (std::find(flight.begin(), flight.end(), origin) != flight.end());
-      bool destinationCheck = (std::find(flight.begin(), flight.end(), destination) != flight.end());
-      bool deptCheck = (std::find(flight.begin(), flight.end(), dept) != flight.end());
-      bool retCheck = (std::find(flight.begin(), flight.end(), ret) != flight.end());
-      if (oriCheck && destinationCheck && deptCheck && retCheck) { matchFlights.push_back(flight); }
-    }
-
-    std::cout << "Flights returned: \n";
-    for (auto flight : matchFlights) {
-      for (int x = 0; x < flight.size(); x++) {
-        std::cout << flight[x] << std::endl;
-    }
-    }
-
-    return matchFlights;
-  }
+  //   std::cout << "Flights returned: \n";
+  //   for (auto flight : matchFlights) {
+  //     for (int x = 0; x < flight.size(); x++) {
+  //       std::cout << flight[x] << std::endl;
+  //     }
+  //   }
+  //   return matchFlights;
+  // }
 
 
   UserCredentials SimpleDB::findCredentialsByName( const std::string & name )

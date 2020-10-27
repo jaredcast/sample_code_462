@@ -1,0 +1,2 @@
+C:\Users\jared\Documents\GitHub\sample_code_462\Desktop_Demo_1\Debug\Desktop_Demo_1.exe
+C:\Users\jared\Documents\GitHub\sample_code_462\Desktop_Demo_1\Debug\Desktop_Demo_1.pdb
