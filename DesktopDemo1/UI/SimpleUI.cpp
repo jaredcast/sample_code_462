@@ -57,10 +57,10 @@ namespace UI
     {
       std::cin.ignore(  std::numeric_limits<std::streamsize>::max(), '\n' );
 
-      std::cout << "  name: ";
-      std::getline( std::cin, credentials.userName );
+      std::cout << "  Email: ";
+      std::getline( std::cin, credentials.userEmail );
 
-      std::cout << "  pass phrase: ";
+      std::cout << "  Password: ";
       std::getline( std::cin, credentials.passPhrase );
 
       unsigned menuSelection;
@@ -78,12 +78,12 @@ namespace UI
       sessionControl = Domain::Session::SessionHandler::createSession( credentials );
       if( sessionControl != nullptr )
       {
-        _logger << "Login Successful for \"" + credentials.userName + "\" as role \"" + selectedRole + "\"";
+        _logger << "Login Successful for \"" + credentials.userEmail + "\" as role \"" + selectedRole + "\"";
         break;
       }
 
       std::cout << "** Login failed\n";
-      _logger << "Login failure for \"" + credentials.userName + "\" as role \"" + selectedRole + "\"";
+      _logger << "Login failure for \"" + credentials.userEmail + "\" as role \"" + selectedRole + "\"";
 
     } while( true );
 

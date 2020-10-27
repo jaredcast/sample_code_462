@@ -10,23 +10,20 @@ namespace  // anonymous (private) working area
   #define STUB(functionName)  std::any functionName( Domain::Session::SessionBase & /*session*/, const std::vector<std::string> & /*args*/ ) \
                               { return {}; }  // Stubbed for now
 
-  STUB( bugPeople    )
-  STUB( collectFines )
-  STUB( help         )
-  STUB( openArchives )
-  STUB( payFines     )
+  
+  STUB( bookFlight     ) //Make this a legit function
   STUB( resetAccount )
-  STUB( returnBook   )
+  STUB( help         )
   STUB( shutdown     )
 
-
-  std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
-  {
-    // TO-DO  Verify there is such a book and the mark the book as being checked out by user
-    std::string results = "Title \"" + args[0] + "\" checkout by \"" + session._credentials.userName + '"';
-    session._logger << "checkoutBook:  " + results;
-    return {results};
-  }
+  //Replace later
+  // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
+  // {
+  //   // TO-DO  Verify there is such a book and the mark the book as being checked out by user
+  //   std::string results = "Title \"" + args[0] + "\" checkout by \"" + session._credentials.userEmail + '"';
+  //   session._logger << "checkoutBook:  " + results;
+  //   return {results};
+  // }
 }    // anonymous (private) working area
 
 
@@ -115,31 +112,9 @@ namespace Domain::Session
 
 
 
-  BorrowerSession::BorrowerSession( const UserCredentials & credentials ) : SessionBase( "Borrower", credentials )
+  CustomerSession::CustomerSession( const UserCredentials & credentials ) : SessionBase( "Customer", credentials )
   {
-    _commandDispatch = { {"Checkout Book", checkoutBook},
-                         {"Help",          help        },
-                         {"Pay Fines",     payFines    },
-                         {"Return Book",   returnBook  } };
-  }
-
-
-
-
-  LibrarianSession::LibrarianSession( const UserCredentials & credentials ) : SessionBase( "Librarian", credentials )
-  {
-    _commandDispatch = { {"Checkout Book", checkoutBook},
-                         {"Collect Fines", collectFines},
-                         {"Help",          help        },
-                         {"Open Archives", openArchives} };
-  }
-
-
-
-
-  ManagementSession::ManagementSession( const UserCredentials & credentials ) : SessionBase( "Management", credentials )
-  {
-    _commandDispatch = { {"Bug People", bugPeople},
-                         {"Help",       help} };
+    _commandDispatch = { {"Book Flight", bookFlight},
+                         {"Help",          help        },};
   }
 }    // namespace Domain::Session

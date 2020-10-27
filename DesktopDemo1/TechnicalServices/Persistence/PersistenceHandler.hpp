@@ -13,7 +13,7 @@ namespace TechnicalServices::Persistence
   // Function argument type definitions
   struct UserCredentials
   {
-    std::string               userName;
+    std::string               userEmail;
     std::string               passPhrase;
     std::vector<std::string>  roles;
   };

@@ -88,7 +88,7 @@ namespace TechnicalServices::Persistence
 
   std::vector<std::string> SimpleDB::findRoles()
   {
-    return { "Borrower", "Librarian", "Administrator", "Management" };
+    return { "Administrator", "Customer" };
   }
 
 
@@ -98,13 +98,11 @@ namespace TechnicalServices::Persistence
   {
     static std::vector<UserCredentials> storedUsers =
     {
-    // Username    Pass Phrase         Authorized roles
-      {"Tom",     "CPSC 462 Rocks!",  {"Borrower",     "Management"}},
-      {"Barbara", "Why am I here?",   {"Borrower"                  }},
-      {"Amanda",  "",                 {"Administrator"             }}
+    // Email                  Password         Authorized roles
+      {"jared@csuf.com",     "password",      {"Customer"}},
     };
 
-    for( const auto & user : storedUsers ) if( user.userName == name ) return user;
+    for( const auto & user : storedUsers ) if( user.userEmail == name ) return user;
 
     // Name not found, log the error and throw something
     std::string message = __func__;

@@ -37,13 +37,13 @@ namespace Domain::Session
     try
     {
       auto &          persistentData    = TechnicalServices::Persistence::PersistenceHandler::instance();
-      UserCredentials credentialsFromDB = persistentData.findCredentialsByName( credentials.userName );
+      UserCredentials credentialsFromDB = persistentData.findCredentialsByName( credentials.userEmail );
 
       // 1)  Perform the authentication
       // std::set_intersection might be a better choice, but here I'm assuming there will be one and only one role in the passed-in
       // credentials I just need to verify the requested role is in the set of authorized roles.  Someday, if a user can sign in
       // with many roles combined, I may have to revisit this approach.  But for now, this is good enough.
-      if(    credentials.userName   == credentialsFromDB.userName
+      if(    credentials.userEmail   == credentialsFromDB.userEmail
           && credentials.passPhrase == credentialsFromDB.passPhrase
           && std::any_of( credentialsFromDB.roles.cbegin(), credentialsFromDB.roles.cend(),
                           [&]( const std::string & role ) { return credentials.roles.size() > 0 && credentials.roles[0] == role; }
@@ -51,10 +51,8 @@ namespace Domain::Session
         )
       {
         // 2) If authenticated user is authorized for the selected role, create a session specific for that role
-        if( credentials.roles[0] == "Borrower"      ) return std::make_unique<Domain::Session::BorrowerSession>     ( credentials );
-        if( credentials.roles[0] == "Librarian"     ) return std::make_unique<Domain::Session::LibrarianSession>    ( credentials );
         if( credentials.roles[0] == "Administrator" ) return std::make_unique<Domain::Session::AdministratorSession>( credentials );
-        if( credentials.roles[0] == "Management"    ) return std::make_unique<Domain::Session::ManagementSession>   ( credentials );
+        if( credentials.roles[0] == "Customer"    ) return std::make_unique<Domain::Session::CustomerSession>   ( credentials );
 
         throw std::logic_error( "Invalid role requested in function " + std::string(__func__) ); // Oops, should never get here but ...  Throw something
       }
