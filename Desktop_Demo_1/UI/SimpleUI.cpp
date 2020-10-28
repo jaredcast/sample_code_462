@@ -140,6 +140,14 @@ namespace UI
         if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';
       }
 
+      else if (selectedCommand == "Show Ticket") { //Showing the booked tickets
+        std::vector<std::string> parameters(1);
+        std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline(std::cin, parameters[0]);
+
+        auto results = sessionControl->executeCommand(selectedCommand, parameters);
+        if (results.has_value()) _logger << "Received reply: \"" + std::any_cast<const std::string&>(results) + '"';
+      }
+
       else sessionControl->executeCommand( selectedCommand, {} );
     } while( true );
 

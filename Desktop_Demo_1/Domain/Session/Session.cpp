@@ -13,7 +13,7 @@ namespace  // anonymous (private) working area
   STUB( resetAccount )
   STUB( help         )
   STUB( shutdown     )
-  //STUB( bookFlight )
+    
   //Replace later
   // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
   // {
@@ -23,13 +23,15 @@ namespace  // anonymous (private) working area
   //   return {results};
   // }
 
-  std::vector<std::vector<std::string>> listOfFlights = {
+  std::vector<std::vector<std::string>> listOfFlights = { //used temporary until objects are implemented
       // Origin 0, Destination 1, Departure date 2, return date 3, Stops 4, Price 5, Trip 6, Weather 7, Status 8
       //COST WILL BE INDEX 5!!!
       //flightnum 9, seats 10, meals 11, bags 12
       {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open", "1"},
       {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open", "2"}
     };
+
+  std::vector<std::vector<std::string>> bookedFlights;
 
   std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   {
@@ -83,19 +85,24 @@ namespace  // anonymous (private) working area
     return results;
   }
   
+  std::any showTickets(Domain::Session::SessionBase& session, const std::vector<std::string>& args)
+  {
+      const int flightNum = std::stoi(args[0]);
+      std::string results = "Flight Not Found";
+      for (auto flight : bookedFlights)
+      {
+          if (flight[9] == args[0])
+          {
+              results = "Name: " + session._credentials.userEmail + "\n"+"Departure Date: "+ flight[2]+
+                  "      Departure From: "+ flight[0]+"\n"+"Stops: "+ flight[4]+"\n";
+              break;
+          }
+      }
+      return results;
+  }
 
-  // std::any bookFlight( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
-  // {
-  //   std::vector<std::vector<std::string>> results = searchFlight(session, args);
-  //   std::cout << "Flights returned: \n";
-  //   for (auto flight : results) {
-  //     for (int x = 0; x < flight.size(); x++) {
-  //       std::cout << flight[x] << " ";
-  //     }
-  //     std::cout << "\n";
-  //   }
-  //   return {results};
-  // }
+
+
 }    // anonymous (private) working area
 
 namespace Domain::Session
@@ -179,6 +186,7 @@ namespace Domain::Session
   {
     _commandDispatch = { {"Search Flight", searchFlight},
                          {"Book Flight", bookFlight},
-                         {"Help",          help        },};
+                         {"Help",          help        },
+                         {"Show Ticket", showTickets}};
   }
 }    // namespace Domain::Session
