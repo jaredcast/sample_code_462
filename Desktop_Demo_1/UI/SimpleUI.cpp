@@ -88,7 +88,7 @@ namespace UI
     } while( true );
 
 
-    // 4) Fetch functionality options for this role
+    // 4) Fetch functionality options for this rolee
     do
     {
       auto        commands = sessionControl->getCommands();
