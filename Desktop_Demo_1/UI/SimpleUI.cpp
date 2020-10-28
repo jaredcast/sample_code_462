@@ -116,7 +116,7 @@ namespace UI
       **     no coupling. This can be achieved in a variety of ways, but one common way is to pass strings instead of strong typed
       **     parameters.
       ******************************************************************************************************************************/
-      if( selectedCommand == "Book Flight" )
+      if( selectedCommand == "Search Flight" )
       {
         std::vector<std::string> parameters( 4 );
 

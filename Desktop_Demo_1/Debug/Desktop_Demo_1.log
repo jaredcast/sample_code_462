@@ -1,13 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (DesktopDemo1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Session.cpp
-C:\Users\jared\Documents\GitHub\sample_code_462\Desktop_Demo_1\Domain\Session\Session.cpp(54,25): warning C4018: '<': signed/unsigned mismatch
-  SessionHandler.cpp
-  main.cpp
-  LoggerHandler.cpp
-  PersistenceHandler.cpp
-  SimpleDB.cpp
-  SimpleUI.cpp
-  SystemDriverUI.cpp
-  UserInterfaceHandler.cpp
-  Generating Code...
-  Desktop_Demo_1.vcxproj -> C:\Users\jared\Documents\GitHub\sample_code_462\Desktop_Demo_1\Debug\Desktop_Demo_1.exe
+C:\Users\jared\Documents\Fall 2020\462\Desktop_Demo_1\Desktop_Demo_1\Domain\Session\Session.cpp(49,25): warning C4018: '<': signed/unsigned mismatch
+  Desktop_Demo_1.vcxproj -> C:\Users\jared\Documents\Fall 2020\462\Desktop_Demo_1\Debug\Desktop_Demo_1.exe

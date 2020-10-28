@@ -79,7 +79,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library_System_AdaptableData.dat">
+    <None Include="Flight_System_AdaptableData.dat">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

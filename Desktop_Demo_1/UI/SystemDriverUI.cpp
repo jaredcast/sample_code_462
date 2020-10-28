@@ -32,11 +32,11 @@ namespace UI
   void SystemDriverUI::launch()
   {
     {
-      _logger << "Starting scenario 1: Book Flight";
+      _logger << "Starting scenario 1: Book flight";
 
       auto session  = Domain::Session::SessionHandler::createSession( {"jared@csuf.com", "password", {"Customer"}} );
       auto commands = session->getCommands();
-      auto results  = session->executeCommand( "Checkout Book", {"Applied UML and Patterns", "Larman", "0-13-148906-2"} ); //fix me
+      auto results  = session->executeCommand( "Search Flight", {"Los Angeles", "Paris", "12-01-2019", "12-16-2019"} );
       //session->singOff();
 
       _logger << "Completed scenario 1";
@@ -44,3 +44,4 @@ namespace UI
     }
   }
 }    // namespace UI
+

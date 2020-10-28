@@ -23,8 +23,9 @@ namespace  // anonymous (private) working area
   //   return {results};
   // }
 
-  std::vector<std::vector<std::string>> getFlights(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
+  std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   {
+    int flightNum = 0;
     const std::string origin = args[0];
     const std::string destination = args[1]; 
     const std::string dept = args[2];
@@ -42,22 +43,31 @@ namespace  // anonymous (private) working area
       bool retCheck = (std::find(flight.begin(), flight.end(), ret) != flight.end());
       if (oriCheck && destinationCheck && deptCheck && retCheck) { matchFlights.push_back(flight); }
     }
-    return matchFlights;
-  }
-
-
-  std::any bookFlight( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
-  {
-    std::vector<std::vector<std::string>> results = getFlights(session, args);
-    std::cout << "Flights returned: \n";
-    for (auto flight : results) {
+    std::cout << "\nList of flights matching your search filters: \n";
+    for (auto flight : matchFlights) {
+      std::cout << "Flight # " << flightNum;
       for (int x = 0; x < flight.size(); x++) {
         std::cout << flight[x] << " ";
       }
       std::cout << "\n";
+      flightNum += 1;
     }
-    return {results};
+
+    return matchFlights;
   }
+
+  // std::any bookFlight( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
+  // {
+  //   std::vector<std::vector<std::string>> results = searchFlight(session, args);
+  //   std::cout << "Flights returned: \n";
+  //   for (auto flight : results) {
+  //     for (int x = 0; x < flight.size(); x++) {
+  //       std::cout << flight[x] << " ";
+  //     }
+  //     std::cout << "\n";
+  //   }
+  //   return {results};
+  // }
 }    // anonymous (private) working area
 
 namespace Domain::Session
@@ -139,7 +149,7 @@ namespace Domain::Session
 
   CustomerSession::CustomerSession( const UserCredentials & credentials ) : SessionBase( "Customer", credentials )
   {
-    _commandDispatch = { {"Book Flight", bookFlight},
+    _commandDispatch = { {"Search Flight", searchFlight},
                          {"Help",          help        },};
   }
 }    // namespace Domain::Session
