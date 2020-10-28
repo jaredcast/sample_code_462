@@ -23,19 +23,21 @@ namespace  // anonymous (private) working area
   //   return {results};
   // }
 
+  std::vector<std::vector<std::string>> listOfFlights = {
+      // Origin 0, Destination 1, Departure date 2, return date 3, Stops 4, Price 5, Trip 6, Weather 7, Status 8
+      //COST WILL BE INDEX 5!!!
+      //flightnum 9, seats 10, meals 11, bags 12
+      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open", "1"},
+      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open", "2"}
+    };
+
   std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   {
-    int flightNum = 0;
     const std::string origin = args[0];
     const std::string destination = args[1]; 
     const std::string dept = args[2];
     const std::string ret = args[3];
     std::vector<std::vector<std::string>> matchFlights;
-    std::vector<std::vector<std::string>> listOfFlights = {
-      // Origin, Destination, Departure date, return date, Stops, Price, Trip, Weather, Status
-      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open"},
-      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open"}
-    };
     for (auto flight : listOfFlights) {
       bool oriCheck = (std::find(flight.begin(), flight.end(), origin) != flight.end());
       bool destinationCheck = (std::find(flight.begin(), flight.end(), destination) != flight.end());
@@ -45,16 +47,42 @@ namespace  // anonymous (private) working area
     }
     std::cout << "\nList of flights matching your search filters: \n";
     for (auto flight : matchFlights) {
-      std::cout << "Flight # " << flightNum;
+      std::cout << "Flight #" << flight[9] << " ";
       for (int x = 0; x < flight.size(); x++) {
         std::cout << flight[x] << " ";
       }
       std::cout << "\n";
-      flightNum += 1;
     }
 
-    return matchFlights;
+    std::string results = "Flights returned to " + session._credentials.userEmail;
+    return results;
   }
+
+  std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
+  {
+    const int flightNum = std::stoi(args[0]); 
+    const int seats = std::stoi(args[1]); 
+    const int meals = std::stoi(args[2]); 
+    const int bags = std::stoi(args[3]); 
+
+    std::cout << "Flight number " << flightNum << " will be booked with " << 
+    seats << " seats, " << meals << " meals, and " << bags << "bags.\n"; //Add later on
+
+    std::vector<std::string> bookedFlight;
+
+    for (auto flight : listOfFlights) {
+      if (flight[9] == args[0]) { 
+        bookedFlight = flight;
+        break;}
+    }
+
+    
+    std::vector<std::string> flightAndCost = { bookedFlight[9], bookedFlight[5]};
+    std::string results = "System responding with flight number " + bookedFlight[9] + " and total cost of " + bookedFlight[5] +
+    " to " + session._credentials.userEmail; 
+    return results;
+  }
+  
 
   // std::any bookFlight( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
   // {
@@ -150,6 +178,7 @@ namespace Domain::Session
   CustomerSession::CustomerSession( const UserCredentials & credentials ) : SessionBase( "Customer", credentials )
   {
     _commandDispatch = { {"Search Flight", searchFlight},
+                         {"Book Flight", bookFlight},
                          {"Help",          help        },};
   }
 }    // namespace Domain::Session

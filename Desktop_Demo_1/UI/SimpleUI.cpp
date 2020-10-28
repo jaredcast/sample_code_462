@@ -116,7 +116,7 @@ namespace UI
       **     no coupling. This can be achieved in a variety of ways, but one common way is to pass strings instead of strong typed
       **     parameters.
       ******************************************************************************************************************************/
-      if( selectedCommand == "Search Flight" )
+      if( selectedCommand == "Search Flight" ) //Searching the flight
       {
         std::vector<std::string> parameters( 4 );
 
@@ -129,7 +129,16 @@ namespace UI
         if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';
       }
 
-      else if( selectedCommand == "Another command" ) /* ... */ {}
+      else if( selectedCommand == "Book Flight" ) { //Booking the flight
+        std::vector<std::string> parameters( 4 );
+        std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline( std::cin, parameters[0] );
+        std::cout << "How many seats?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[1] );
+        std::cout << "How many meals?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
+        std::cout << "How many bags?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
+
+        auto results = sessionControl->executeCommand( selectedCommand, parameters );
+        if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';
+      }
 
       else sessionControl->executeCommand( selectedCommand, {} );
     } while( true );

@@ -18,17 +18,6 @@ namespace TechnicalServices::Persistence
     std::vector<std::string>  roles;
   };
 
-  struct Flight {
-    std::string               departure;
-    std::string               destination;
-    std::string               deptDate;
-    std::string               returnDate;
-    std::string               stops;
-    int                       price;
-    std::string               trip;
-    std::string               weather;
-    std::string               status;
-  };
   
 
 
