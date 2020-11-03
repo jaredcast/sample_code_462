@@ -16,8 +16,6 @@ namespace  // anonymous (private) working area
   STUB( resetAccount )
   STUB( help         )
   STUB( shutdown     )
-
-  std::any showTickets();
   
   //Replace later
   // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
@@ -207,7 +205,6 @@ namespace Domain::Session
   {
     _commandDispatch = { {"Search Flight", searchFlight},
                          {"Book Flight", bookFlight},
-                         {"Help",          help        },                        
-                         {"Show Ticket", showTickets}};
+                         {"Help",          help        }};
   }
 }    // namespace Domain::Session

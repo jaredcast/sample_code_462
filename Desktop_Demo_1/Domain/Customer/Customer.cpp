@@ -1,4 +1,5 @@
 #include "Domain/Customer/Customer.hpp"
+#include "Domain/Session/Session.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include <string>
 #include <any>
@@ -182,13 +183,13 @@ namespace Domain::Customer
 
   std::vector<std::vector<std::string>> bookedFlights;
 
-  std::any searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate)
+  std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   { 
     std::string results = "Hello";
     return results;
   }
 
-  std::any bookFlight(int flightNum, int seats, int meals, int bags)
+  std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   {
     std::string results = "Hello";
     return results;
@@ -210,7 +211,7 @@ namespace Domain::Customer
       return results;
   }*/
 
-  std::any payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost)
+  std::any payCreditCard(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   {
     std::string results = "Hello";
     return results;

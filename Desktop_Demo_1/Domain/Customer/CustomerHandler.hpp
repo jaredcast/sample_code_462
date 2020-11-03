@@ -6,6 +6,8 @@
 #include <string>
 #include <vector>
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
+#include "Domain/Session/Session.hpp"
+#include "Domain/Session/SessionHandler.hpp"
 
 namespace Domain::Customer
 {
@@ -28,9 +30,9 @@ namespace Domain::Customer
       //virtual std::vector<std::string> bookFlight(int flightNum, int seats, int meals, int bags) = 0; //respond with flight number, and cost
       //virtual std::vector<std::string> payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) = 0; //flight info, receipt, ticket, email etc
       
-      virtual std::any searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate)  = 0;
-      virtual std::any bookFlight(int flightNum, int seats, int meals, int bags) = 0; //respond with flight number, and cost
-      virtual std::any payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) = 0; //flight info, receipt, ticket, email etc
+      virtual std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)  = 0;
+      virtual std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0; //respond with flight number, and cost
+      virtual std::any payCreditCard(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0; //flight info, receipt, ticket, email etc
       
       
       //Exceptions
