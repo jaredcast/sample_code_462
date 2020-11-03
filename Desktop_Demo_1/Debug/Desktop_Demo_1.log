@@ -1,7 +1,18 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (DesktopDemo1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Customer.cpp
   CustomerHandler.cpp
+  Session.cpp
+C:\Users\jared\Documents\GitHub\sample_code_462\Desktop_Demo_1\Domain\Session\Session.cpp(14,1): warning C4005: 'STUB': macro redefinition
+C:\Users\jared\Documents\GitHub\sample_code_462\Desktop_Demo_1\Domain\Customer\Customer.cpp(12): message : see previous definition of 'STUB'
   SessionHandler.cpp
+  main.cpp
+  LoggerHandler.cpp
+  PersistenceHandler.cpp
+  SimpleDB.cpp
+  SimpleUI.cpp
+  SystemDriverUI.cpp
+  UserInterfaceHandler.cpp
   Generating Code...
+  LINK : C:\Users\jared\Documents\GitHub\sample_code_462\Debug\Desktop_Demo_1.exe not found or not built by the last incremental link; performing full link
 CustomerHandler.obj : error LNK2019: unresolved external symbol "public: __thiscall Domain::Customer::CustomerSession::CustomerSession(struct TechnicalServices::Persistence::UserCredentials const &)" (??0CustomerSession@Customer@Domain@@QAE@ABUUserCredentials@Persistence@TechnicalServices@@@Z) referenced in function "class std::unique_ptr<struct Domain::Customer::CustomerSession,struct std::default_delete<struct Domain::Customer::CustomerSession> > __cdecl std::make_unique<struct Domain::Customer::CustomerSession,struct TechnicalServices::Persistence::UserCredentials const &,0>(struct TechnicalServices::Persistence::UserCredentials const &)" (??$make_unique@UCustomerSession@Customer@Domain@@ABUUserCredentials@Persistence@TechnicalServices@@$0A@@std@@YA?AV?$unique_ptr@UCustomerSession@Customer@Domain@@U?$default_delete@UCustomerSession@Customer@Domain@@@std@@@0@ABUUserCredentials@Persistence@TechnicalServices@@@Z)
-C:\Users\jared\Documents\Fall 2020\462\Desktop_Demo_1\Debug\Desktop_Demo_1.exe : fatal error LNK1120: 1 unresolved externals
+C:\Users\jared\Documents\GitHub\sample_code_462\Debug\Desktop_Demo_1.exe : fatal error LNK1120: 1 unresolved externals
