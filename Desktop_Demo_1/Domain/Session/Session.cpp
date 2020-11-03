@@ -1,5 +1,7 @@
 #include "Domain/Session/Session.hpp"
+#include "Domain/Customer/Customer.cpp"
 #include "Domain/Customer/Customer.hpp"
+#include "Domain/Customer/CustomerHandler.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include <string>
 #include <any>
@@ -14,7 +16,9 @@ namespace  // anonymous (private) working area
   STUB( resetAccount )
   STUB( help         )
   STUB( shutdown     )
-    
+
+  std::any showTickets();
+  
   //Replace later
   // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
   // {
@@ -187,12 +191,6 @@ namespace Domain::Session
   }
 
 
-
-
-
-
-
-
   // 2) Now map the above system events to roles authorized to make such a request.  Many roles can request the same event, and many
   //    events can be requested by a single role.
   AdministratorSession::AdministratorSession( const UserCredentials & credentials ) : SessionBase( "Administrator", credentials )
@@ -209,10 +207,7 @@ namespace Domain::Session
   {
     _commandDispatch = { {"Search Flight", searchFlight},
                          {"Book Flight", bookFlight},
-                         {"Help",          help        },
-                         {"Show Ticket", showTickets},
-                         {"Pay With Credit Card", payWithCreditCard}};
-
-                         //Second argument, 
+                         {"Help",          help        },                        
+                         {"Show Ticket", showTickets}};
   }
 }    // namespace Domain::Session

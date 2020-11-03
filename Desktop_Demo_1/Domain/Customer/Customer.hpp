@@ -23,9 +23,13 @@ namespace Domain::Customer
         // Operations
         //add to interface of CustomerHandler. still need here to implement interface
         //override - implement functions from base class
-        std::vector<std::string> searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate) override; //return list of flights?
-        std::vector<std::string> bookFlight(int flightNum, int seats, int meals, int bags) override; //respond with flight number, and cost
-        std::vector<std::string> payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) override; //flight info, receipt, ticket, email etc
+        //std::vector<std::string> searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate) override; //return list of flights?
+        //std::vector<std::string> bookFlight(int flightNum, int seats, int meals, int bags) override; //respond with flight number, and cost
+        //std::vector<std::string> payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) override; //flight info, receipt, ticket, email etc
+
+        std::any searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate) override; //return list of flights?
+        std::any bookFlight(int flightNum, int seats, int meals, int bags) override; //respond with flight number, and cost
+        std::any payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) override; //flight info, receipt, ticket, email etc
 
         // Dispatched functions need access to these attributes, so for now make these public instead of protected
         // Types

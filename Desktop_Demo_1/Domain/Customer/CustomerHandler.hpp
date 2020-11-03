@@ -24,9 +24,15 @@ namespace Domain::Customer
       //   Work in progress ...
       //Customer will implement CustomerHandler. CustomerHandler is the interface
       //Add the virtual functions
-      virtual std::vector<std::string> searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate)  = 0;
-      virtual std::vector<std::string> bookFlight(int flightNum, int seats, int meals, int bags) = 0; //respond with flight number, and cost
-      virtual std::vector<std::string> payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) = 0; //flight info, receipt, ticket, email etc
+      //virtual std::vector<std::string> searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate)  = 0;
+      //virtual std::vector<std::string> bookFlight(int flightNum, int seats, int meals, int bags) = 0; //respond with flight number, and cost
+      //virtual std::vector<std::string> payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) = 0; //flight info, receipt, ticket, email etc
+      
+      virtual std::any searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate)  = 0;
+      virtual std::any bookFlight(int flightNum, int seats, int meals, int bags) = 0; //respond with flight number, and cost
+      virtual std::any payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) = 0; //flight info, receipt, ticket, email etc
+      
+      
       //Exceptions
       struct SessionException : std::runtime_error {using runtime_error   ::runtime_error;   };
       struct   BadCommand     : SessionException   {using SessionException::SessionException;};

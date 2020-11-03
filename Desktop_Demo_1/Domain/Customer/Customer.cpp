@@ -10,7 +10,7 @@ namespace  // anonymous (private) working area
     #define STUB(functionName)  std::any functionName( Domain::Session::Customer & /*session*/, const std::vector<std::string> & /*args*/ ) \
                               { return {}; }  // Stubbed for now
 
-  std::vector<std::vector<std::string>> listOfFlights = { //used temporary until objects are implemented
+  /*std::vector<std::vector<std::string>> listOfFlights = { //used temporary until objects are implemented
       // Origin 0, Destination 1, Departure date 2, return date 3, Stops 4, Price 5, Trip 6, Weather 7, Status 8
       //COST WILL BE INDEX 5!!!
       //flightnum 9, seats 10, meals 11, bags 12
@@ -159,15 +159,62 @@ namespace Domain::Customer
     }
 
     return results;
+  }*/
+
+  // CustomerSession::CustomerSession( const UserCredentials & credentials ) : Customer( "Customer", credentials )
+  // {
+  //   _commandDispatch = { {"Search Flight", searchFlight},
+  //                       {"Book Flight", bookFlight},
+  //                       {"Show Ticket", showTickets},
+  //                       {"Pay With Credit Card", payWithCreditCard} };
+  //                       //Second argument, 
+  // }
+  // ------------------------------------------------------------------------------
+
+
+  std::vector<std::vector<std::string>> listOfFlights = { //used temporary until objects are implemented
+      // Origin 0, Destination 1, Departure date 2, return date 3, Stops 4, Price 5, Trip 6, Weather 7, Status 8
+      //COST WILL BE INDEX 5!!!
+      //flightnum 9, seats 10, meals 11, bags 12
+      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open", "1"},
+      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open", "2"}
+    };
+
+  std::vector<std::vector<std::string>> bookedFlights;
+
+  std::any searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate)
+  { 
+    std::string results = "Hello";
+    return results;
   }
 
-  CustomerSession::CustomerSession( const UserCredentials & credentials ) : Customer( "Customer", credentials )
+  std::any bookFlight(int flightNum, int seats, int meals, int bags)
   {
-    _commandDispatch = { {"Search Flight", searchFlight},
-                        {"Book Flight", bookFlight},
-                        {"Show Ticket", showTickets},
-                        {"Pay With Credit Card", payWithCreditCard} };
-                        //Second argument, 
+    std::string results = "Hello";
+    return results;
+  }
+  
+  /*std::any showTickets(Domain::Customer::Customer& session, const std::vector<std::string>& args)
+  {
+      const int flightNum = std::stoi(args[0]);
+      std::string results = "Flight Not Found";
+      for (auto flight : bookedFlights)
+      {
+          if (flight[9] == args[0])
+          {
+              results = "Name: " + session._credentials.userEmail + "\n"+"Departure Date: "+ flight[2]+
+                  "      Departure From: "+ flight[0]+"\n"+"Stops: "+ flight[4]+"\n";
+              break;
+          }
+      }
+      return results;
+  }*/
+
+  std::any payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost)
+  {
+    std::string results = "Hello";
+    return results;
   }
 
-}
+}    // anonymous (private) working area
+
