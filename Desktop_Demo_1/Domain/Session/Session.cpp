@@ -35,16 +35,10 @@ namespace Domain::Session
     _logger << "Session \"" + _name + "\" being used and has been successfully initialized";
   }
 
-
-
-
   SessionBase::~SessionBase() noexcept
   {
     _logger << "Session \"" + _name + "\" shutdown successfully";
   }
-
-
-
 
   std::vector<std::string> SessionBase::getCommands()
   {
@@ -55,9 +49,6 @@ namespace Domain::Session
 
     return availableCommands;
   }
-
-
-
 
   std::any SessionBase::executeCommand( const std::string & command, const std::vector<std::string> & args )
   {

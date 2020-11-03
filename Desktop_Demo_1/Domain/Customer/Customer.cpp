@@ -1,4 +1,5 @@
 #include "Domain/Customer/Customer.hpp"
+#include "Domain/Customer/CustomerHandler.hpp"
 #include "Domain/Session/Session.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include <string>
