@@ -87,6 +87,10 @@ namespace UI
 
     } while( true );
 
+    if (selectedRole == "Customer") {
+      
+    }
+
 
     // 4) Fetch functionality options for this rolee
     do
@@ -142,7 +146,18 @@ namespace UI
 
       else if (selectedCommand == "Show Ticket") { //Showing the booked tickets
         std::vector<std::string> parameters(1);
-        std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline(std::cin, parameters[0]);
+        std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline(std::cin, parameters[0]); }
+
+      else if (selectedCommand == "Pay With Credit Card") { //Showing the booked tickets
+      std::vector<std::string> parameters(6);
+      std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline(std::cin, parameters[0]);
+      std::cout << "Enter cost: "; std::cin >> std::ws;  std::getline(std::cin, parameters[1]);
+      std::cout << "Enter card number: "; std::cin >> std::ws;  std::getline(std::cin, parameters[2]);
+      std::cout << "Enter pin: "; std::cin >> std::ws;  std::getline(std::cin, parameters[3]);
+      std::cout << "Enter name on card: "; std::cin >> std::ws;  std::getline(std::cin, parameters[4]);
+      std::cout << "Enter billing address: "; std::cin >> std::ws;  std::getline(std::cin, parameters[5]);
+
+      
 
         auto results = sessionControl->executeCommand(selectedCommand, parameters);
         if (results.has_value()) _logger << "Received reply: \"" + std::any_cast<const std::string&>(results) + '"';

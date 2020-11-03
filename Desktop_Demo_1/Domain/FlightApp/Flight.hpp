@@ -4,12 +4,12 @@
 
 namespace Domain::FlightApp
 {
-  class Flight : public Domain::Flight::FlightHandler
+  class Flight : public FlightHandler
   {
     public:
       // Constructors
-      using FlightHandler::FlightHandler;  // inherit constructors
-
+      //using FlightHandler::FlightHandler;  // inherit constructors
+      Flight() {}
       // Operations
 
      ~Flight() noexcept override;

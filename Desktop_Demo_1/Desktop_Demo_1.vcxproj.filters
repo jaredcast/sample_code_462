@@ -48,6 +48,12 @@
     <ClInclude Include="Domain\Library\Flights.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Domain\Customer\Customer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Domain\Customer\CustomerHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Domain\Session\Session.cpp">
@@ -76,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Customer\CustomerHandler.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Domain\Customer\Customer.cpp">
+      <Filter>Header Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

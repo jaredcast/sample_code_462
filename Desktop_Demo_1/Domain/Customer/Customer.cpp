@@ -1,4 +1,3 @@
-#include "Domain/Session/Session.hpp"
 #include "Domain/Customer/Customer.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include <string>
@@ -7,24 +6,11 @@
 
 namespace  // anonymous (private) working area
 {
-  // 1)  First define all system events (commands, actions, requests, etc.)
-  #define STUB(functionName)  std::any functionName( Domain::Session::SessionBase & /*session*/, const std::vector<std::string> & /*args*/ ) \
+    // 1)  First define all system events (commands, actions, requests, etc.)
+    #define STUB(functionName)  std::any functionName( Domain::Session::Customer & /*session*/, const std::vector<std::string> & /*args*/ ) \
                               { return {}; }  // Stubbed for now
 
-  STUB( resetAccount )
-  STUB( help         )
-  STUB( shutdown     )
-    
-  //Replace later
-  // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
-  // {
-  //   // TO-DO  Verify there is such a book and the mark the book as being checked out by user
-  //   std::string results = "Title \"" + args[0] + "\" checkout by \"" + session._credentials.userEmail + '"';
-  //   session._logger << "checkoutBook:  " + results;
-  //   return {results};
-  // }
-
-  /*std::vector<std::vector<std::string>> listOfFlights = { //used temporary until objects are implemented
+  std::vector<std::vector<std::string>> listOfFlights = { //used temporary until objects are implemented
       // Origin 0, Destination 1, Departure date 2, return date 3, Stops 4, Price 5, Trip 6, Weather 7, Status 8
       //COST WILL BE INDEX 5!!!
       //flightnum 9, seats 10, meals 11, bags 12
@@ -32,13 +18,10 @@ namespace  // anonymous (private) working area
       {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open", "2"}
     };
 
-  std::vector<std::vector<std::string>> bookedFlights = [];
+  std::vector<std::vector<std::string>> bookedFlights;
 
-  //Belongs in customers. Map to component. Belongs in session component.
-  //Things like searchFlight belong in customer.
-  //Session should only handle creating session
-  std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
-  {
+  std::any searchFlight(Domain::Customer::Customer & session, const std::vector<std::string> & args)
+  { 
     const std::string origin = args[0];
     const std::string destination = args[1]; 
     const std::string dept = args[2];
@@ -64,7 +47,7 @@ namespace  // anonymous (private) working area
     return results;
   }
 
-  std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
+  std::any bookFlight(Domain::Customer::Customer & session, const std::vector<std::string> & args)
   {
     const int flightNum = std::stoi(args[0]); 
     const int seats = std::stoi(args[1]); 
@@ -89,7 +72,7 @@ namespace  // anonymous (private) working area
     return results;
   }
   
-  std::any showTickets(Domain::Session::SessionBase& session, const std::vector<std::string>& args)
+  std::any showTickets(Domain::Customer::Customer& session, const std::vector<std::string>& args)
   {
       const int flightNum = std::stoi(args[0]);
       std::string results = "Flight Not Found";
@@ -105,7 +88,7 @@ namespace  // anonymous (private) working area
       return results;
   }
 
-  std::any payWithCreditCard( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
+  std::any payWithCreditCard( Domain::Customer::Customer & session, const std::vector<std::string> & args )
   {
     // TO-DO  Verify there is such a book and the mark the book as being checked out by user
     int flightNum = std::stoi(args[0]);
@@ -122,29 +105,23 @@ namespace  // anonymous (private) working area
 
     session._logger << "payWithCreditCard: " + results;
     return results; //fix this
-  }*/
+  }
 
 }    // anonymous (private) working area
 
-namespace Domain::Session
+namespace Domain::Customer
 {
-  SessionBase::SessionBase( const std::string & description, const UserCredentials & credentials ) : _credentials( credentials ), _name( description )
+  Customer::Customer( const std::string & description, const UserCredentials & credentials ) : _credentials( credentials ), _name( description )
   {
     _logger << "Session \"" + _name + "\" being used and has been successfully initialized";
   }
 
-
-
-
-  SessionBase::~SessionBase() noexcept
+  Customer::~Customer() noexcept
   {
     _logger << "Session \"" + _name + "\" shutdown successfully";
   }
 
-
-
-
-  std::vector<std::string> SessionBase::getCommands()
+  std::vector<std::string> Customer::getCommands()
   {
     std::vector<std::string> availableCommands;
     availableCommands.reserve( _commandDispatch.size() );
@@ -154,12 +131,10 @@ namespace Domain::Session
     return availableCommands;
   }
 
-
-
   //Gets the string as the command, gets arguments as second parameter. 
   //Convert string to a function, find the function that goes with it. commandDispatch.find
 
-  std::any SessionBase::executeCommand( const std::string & command, const std::vector<std::string> & args )
+  std::any Customer::executeCommand( const std::string & command, const std::vector<std::string> & args )
   {
     std::string parameters;
     for( const auto & arg : args )  parameters += '"' + arg + "\"  ";
@@ -186,33 +161,13 @@ namespace Domain::Session
     return results;
   }
 
-
-
-
-
-
-
-
-  // 2) Now map the above system events to roles authorized to make such a request.  Many roles can request the same event, and many
-  //    events can be requested by a single role.
-  AdministratorSession::AdministratorSession( const UserCredentials & credentials ) : SessionBase( "Administrator", credentials )
-  {
-    _commandDispatch = { {"Help",            help        },
-                         {"Reset Account",   resetAccount},
-                         {"Shutdown System", shutdown    } };
-  }
-
-
-
-
-  CustomerSession::CustomerSession( const UserCredentials & credentials ) : SessionBase( "Customer", credentials )
+  CustomerSession::CustomerSession( const UserCredentials & credentials ) : Customer( "Customer", credentials )
   {
     _commandDispatch = { {"Search Flight", searchFlight},
-                         {"Book Flight", bookFlight},
-                         {"Help",          help        },
-                         {"Show Ticket", showTickets},
-                         {"Pay With Credit Card", payWithCreditCard}};
-
-                         //Second argument, 
+                        {"Book Flight", bookFlight},
+                        {"Show Ticket", showTickets},
+                        {"Pay With Credit Card", payWithCreditCard} };
+                        //Second argument, 
   }
-}    // namespace Domain::Session
+
+}

@@ -1,27 +1,25 @@
-#include "Domain/Session/SessionHandler.hpp"
+#include "Domain/Customer/CustomerHandler.hpp"
 
 #include <algorithm>    // std::any_of()
 #include <memory>       // unique_ptr, make_unique<>()
 #include <stdexcept>    // logic_error
 #include <string>
 
-#include "Domain/Session/Session.hpp"
-#include "Domain/Customer/CustomerHandler.hpp"
 #include "Domain/Customer/Customer.hpp"
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 
 
 
 
-namespace Domain::Session
+namespace Domain::Customer
 {
-  SessionHandler::~SessionHandler() noexcept = default;
+  CustomerHandler::~CustomerHandler() noexcept = default;
 
 
 
 
   // returns a specialized object specific to the specified role
-  std::unique_ptr<SessionHandler> SessionHandler::createSession( const UserCredentials & credentials )
+  std::unique_ptr<CustomerHandler> CustomerHandler::createSession( const UserCredentials & credentials )
   {
     // Just as a smart defensive strategy, one should verify this role is one of the roles in the DB's legal value list.  I'll come
     // back to that
@@ -52,8 +50,8 @@ namespace Domain::Session
         )
       {
         // 2) If authenticated user is authorized for the selected role, create a session specific for that role
-        if( credentials.roles[0] == "Administrator" ) return std::make_unique<Domain::Session::AdministratorSession>( credentials );
-        if( credentials.roles[0] == "Customer"    ) return std::make_unique<Domain::Session::CustomerSession>   ( credentials );
+        if( credentials.roles[0] == "Customer"    ) return std::make_unique<Domain::Customer::CustomerSession>   ( credentials );
+
         throw std::logic_error( "Invalid role requested in function " + std::string(__func__) ); // Oops, should never get here but ...  Throw something
       }
     }

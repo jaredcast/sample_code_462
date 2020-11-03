@@ -3,5 +3,5 @@
 // =  Component.UI Legal options:
 // =     "Simple UI"             Interactive console
 // =     "Contracted UI"         Scenario driver with no user interaction
-"Component.UI" = "Contracted UI"
+"Component.UI" = "Simple UI"
 //SystemDriverUI.CPP

@@ -9,7 +9,8 @@
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 
 
-
+//Get a string
+//Look up that string and call the right function in CustomerHandler
 
 namespace Domain::Session
 {

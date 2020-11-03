@@ -88,7 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\sample_code_462\Desktop_Demo_1</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\Desktop_Demo_1\Desktop_Demo_1</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -141,6 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Domain\Customer\Customer.hpp" />
+    <ClInclude Include="Domain\Customer\CustomerHandler.hpp" />
     <ClInclude Include="Domain\Library\Flights.hpp" />
     <ClInclude Include="Domain\Library\MaintainFlightsHandler.hpp" />
     <ClInclude Include="Domain\Session\Session.hpp" />
@@ -154,6 +156,8 @@
     <ClInclude Include="UI\UserInterfaceHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Domain\Customer\Customer.cpp" />
+    <ClCompile Include="Domain\Customer\CustomerHandler.cpp" />
     <ClCompile Include="Domain\Session\Session.cpp" />
     <ClCompile Include="Domain\Session\SessionHandler.cpp" />
     <ClCompile Include="main.cpp" />
