@@ -80,21 +80,24 @@ namespace  // anonymous (private) working area
     return results;
   }
   
-  std::any showTickets(Domain::Session::SessionBase& session, const std::vector<std::string>& args)
-  {
-      const int flightNum = std::stoi(args[0]);
-      std::string results = "Flight Not Found!";
-      for (auto flight : bookedFlights)
-      {
-          if (flight[9] == args[0])
-          {
-              results = "Name: " + session._credentials.userEmail + "\n"+"Departure Date: "+ flight[2]+
-                  "      Departure From: "+ flight[0]+"\n"+"Stops: "+ flight[4] + " ";
-              break;
-          }
-      }
-      return results;
-  }
+   std::any showTickets(Domain::Session::SessionBase& session, const std::vector<std::string>& args)
+    {
+        const int flightNum = std::stoi(args[0]);
+        std::string results = "Flight Not Found";
+        for (auto flight : bookedFlights)
+        {
+            if (flight[9] == args[0])
+            {
+                results = "\n""Name: " + session._credentials.userEmail + "\n" +
+                    "Departure Date: " + flight[2] + "      Departure From: " + flight[0] + "\n"
+                    + "Destenation:  " + flight[1] + "             Stops: " + flight[4] + "\n"
+                    + "Number of Seats: 1        Numbers of Meals: 1        Number of Bags: 1";
+                break;
+            }
+        }
+        return results;
+    }
+
 
   std::any payCreditCard(Domain::Session::SessionBase& session, const std::vector <std::string > & args) {
     std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ".";
