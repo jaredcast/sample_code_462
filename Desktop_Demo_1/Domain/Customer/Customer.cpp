@@ -16,8 +16,8 @@ namespace  // anonymous (private) working area
       // Origin 0, Destination 1, Departure date 2, return date 3, Stops 4, Price 5, Trip 6, Weather 7, Status 8
       //COST WILL BE INDEX 5!!!
       //flightnum 9, seats 10, meals 11, bags 12
-      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open", "1"},
-      {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open", "2"}
+      {"Los Angeles", "Paris", "12/01/2019", "12/16/2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open", "1"},
+      {"Los Angeles", "Paris", "12/01/2019", "12/16/2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open", "2"}
     };
 
   std::vector<std::vector<std::string>> bookedFlights = {};
@@ -33,6 +33,7 @@ namespace  // anonymous (private) working area
     const std::string destination = args[1]; 
     const std::string dept = args[2];
     const std::string ret = args[3];
+    std::string results = "";
     std::vector<std::vector<std::string>> matchFlights;
     for (auto flight : listOfFlights) {
       bool oriCheck = (std::find(flight.begin(), flight.end(), origin) != flight.end());
@@ -46,11 +47,12 @@ namespace  // anonymous (private) working area
       std::cout << "Flight #" << flight[9] << " ";
       for (int x = 0; x < flight.size(); x++) {
         std::cout << flight[x] << " ";
+        results.append(flight[x] + " ");
       }
       std::cout << "\n";
     }
 
-    std::string results = "Flights returned to " + session._credentials.userEmail;
+    results.append(" returned to "+ session._credentials.userEmail);
     return results;
   }
 
@@ -60,9 +62,10 @@ namespace  // anonymous (private) working area
     const int seats = std::stoi(args[1]); 
     const int meals = std::stoi(args[2]); 
     const int bags = std::stoi(args[3]); 
+    std::string results = "Flight number " + args[0] + " will be booked with " + args[1] + " seats, " + args[2] + " meals, and " + args[3] + " bags. ";
 
-    std::cout << "Flight number " << flightNum << " will be booked with " << 
-    seats << " seats, " << meals << " meals, and " << bags << "bags.\n"; //Add later on
+    //std::cout << "Flight number " << flightNum << " will be booked with " << 
+    //seats << " seats, " << meals << " meals, and " << bags << "bags.\n"; //Add later on
 
     std::vector<std::string> bookedFlight;
 
@@ -72,11 +75,8 @@ namespace  // anonymous (private) working area
         bookedFlights.push_back(flight);
         break;}
     }
-
-    
-    std::vector<std::string> flightAndCost = { bookedFlight[9], bookedFlight[5]};
-    std::string results = "Flight number is " + bookedFlight[9] + " with a total cost of " + bookedFlight[5] +
-    ". Ticket has been emailed to " + session._credentials.userEmail; 
+    //std::vector<std::string> flightAndCost = { bookedFlight[9], bookedFlight[5]};
+    results.append("Total cost: " + bookedFlight[5] + "\nPayment is required by " + session._credentials.userEmail);
     return results;
   }
   
@@ -96,9 +96,8 @@ namespace  // anonymous (private) working area
       return results;
   }
 
-  std::any payCreditCard(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
-  {
-    std::string results = "Hello";
+  std::any payCreditCard(Domain::Session::SessionBase& session, const std::vector <std::string > & args) {
+    std::string results = "Flight " + args[0] + " has been paid for by card number " + args[1];
     return results;
   }
 

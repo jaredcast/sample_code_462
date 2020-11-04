@@ -86,13 +86,14 @@ namespace Domain::Session
                          {"Reset Account",   resetAccount},
                          {"Shutdown System", shutdown    } };
   }
-
+  //Login returns menu in SSD
   CustomerSession::CustomerSession( const UserCredentials & credentials ) : SessionBase( "Customer", credentials )
   {
     _commandDispatch = { {"Search Flight", searchFlight},
                          {"Book Flight", bookFlight},
                          {"Show Ticket", showTickets},
                          {"Hello", hello},
+                         {"Pay with Credit Card", payCreditCard},
                          {"Help",          help        }};
   }
 }    // namespace Domain::Session
