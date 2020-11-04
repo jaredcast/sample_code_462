@@ -23,7 +23,7 @@ namespace  // anonymous (private) working area
   std::vector<std::vector<std::string>> bookedFlights = {};
 
   std::any hello(Domain::Session::SessionBase& session, const std::vector<std::string>& args) {
-      std::string test = "This is a test function to rest the strings!!!!!";
+      std::string test = "This is a test function to rest the string!!!!!!!!!!!!!!!!!";
       return test;
   }
 
