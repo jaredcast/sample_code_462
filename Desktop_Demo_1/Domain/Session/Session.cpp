@@ -91,6 +91,7 @@ namespace Domain::Session
   {
     _commandDispatch = { {"Search Flight", searchFlight},
                          {"Book Flight", bookFlight},
+                        {"Show Ticket", showTickets},
                          {"Hello", hello},
                          {"Help",          help        }};
   }
