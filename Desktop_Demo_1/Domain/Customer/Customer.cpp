@@ -83,7 +83,7 @@ namespace  // anonymous (private) working area
   std::any showTickets(Domain::Session::SessionBase& session, const std::vector<std::string>& args)
   {
       const int flightNum = std::stoi(args[0]);
-      std::string results = "Flight Not Found";
+      std::string results = "Flight Not Found!";
       for (auto flight : bookedFlights)
       {
           if (flight[9] == args[0])
@@ -97,7 +97,7 @@ namespace  // anonymous (private) working area
   }
 
   std::any payCreditCard(Domain::Session::SessionBase& session, const std::vector <std::string > & args) {
-    std::string results = "Flight " + args[0] + " has been paid for by card number " + args[1];
+    std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ".";
     return results;
   }
 
