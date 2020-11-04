@@ -36,6 +36,7 @@ namespace Domain::Customer
         std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args) override; //respond with flight number, and cost
         std::any payCreditCard(Domain::Session::SessionBase & session, const std::vector<std::string> & args) override; //flight info, receipt, ticket, email etc
         std::any hello(Domain::Session::SessionBase & session, const std::vector<std::string> & args) override;
+        std::any showTickets(Domain::Session::SessionBase& session, const std::vector <std::string > & args) override;
         // Dispatched functions need access to these attributes, so for now make these public instead of protected
         // Types
         using DispatchTable = std::map<std::string, std::any (*)( Domain::Customer::Customer &, const std::vector<std::string> & )>;
