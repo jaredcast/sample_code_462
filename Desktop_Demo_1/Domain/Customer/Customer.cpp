@@ -69,6 +69,7 @@ namespace  // anonymous (private) working area
     for (auto flight : listOfFlights) {
       if (flight[9] == args[0]) { 
         bookedFlight = flight;
+        bookedFlights.push_back(flight);
         break;}
     }
 
