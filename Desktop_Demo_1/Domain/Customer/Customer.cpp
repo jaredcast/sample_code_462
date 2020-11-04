@@ -23,7 +23,7 @@ namespace  // anonymous (private) working area
   std::vector<std::vector<std::string>> bookedFlights = {};
 
   std::any hello(Domain::Session::SessionBase& session, const std::vector<std::string>& args) {
-      std::string test = "This is a test function to rest the strings!!";
+      std::string test = "This is a test function to rest the strings";
       return test;
   }
 
@@ -75,8 +75,8 @@ namespace  // anonymous (private) working area
 
     
     std::vector<std::string> flightAndCost = { bookedFlight[9], bookedFlight[5]};
-    std::string results = "System responding with flight number " + bookedFlight[9] + " and total cost of " + bookedFlight[5] +
-    " to " + session._credentials.userEmail; 
+    std::string results = "Flight number is " + bookedFlight[9] + " with a total cost of " + bookedFlight[5] +
+    ". Ticket has been emailed to " + session._credentials.userEmail; 
     return results;
   }
   
@@ -89,7 +89,7 @@ namespace  // anonymous (private) working area
           if (flight[9] == args[0])
           {
               results = "Name: " + session._credentials.userEmail + "\n"+"Departure Date: "+ flight[2]+
-                  "      Departure From: "+ flight[0]+"\n"+"Stops: "+ flight[4]+"\n";
+                  "      Departure From: "+ flight[0]+"\n"+"Stops: "+ flight[4] + " ";
               break;
           }
       }
