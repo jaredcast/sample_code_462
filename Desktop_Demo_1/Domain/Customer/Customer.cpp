@@ -20,7 +20,7 @@ namespace  // anonymous (private) working area
       {"Los Angeles", "Paris", "12-01-2019", "12-16-2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open", "2"}
     };
 
-  std::vector<std::vector<std::string>> bookedFlights;
+  std::vector<std::vector<std::string>> bookedFlights = {};
 
   std::any hello(Domain::Session::SessionBase& session, const std::vector<std::string>& args) {
       std::string test = "This is a test function to rest the strings";
@@ -79,7 +79,7 @@ namespace  // anonymous (private) working area
     return results;
   }
   
-  /*std::any showTickets(Domain::Customer::Customer& session, const std::vector<std::string>& args)
+  std::any showTickets(Domain::Customer::Customer& session, const std::vector<std::string>& args)
   {
       const int flightNum = std::stoi(args[0]);
       std::string results = "Flight Not Found";
@@ -93,7 +93,7 @@ namespace  // anonymous (private) working area
           }
       }
       return results;
-  }*/
+  }
 
   std::any payCreditCard(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   {
