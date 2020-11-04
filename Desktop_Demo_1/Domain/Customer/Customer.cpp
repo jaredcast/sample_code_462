@@ -23,7 +23,7 @@ namespace  // anonymous (private) working area
   std::vector<std::vector<std::string>> bookedFlights = {};
 
   std::any hello(Domain::Session::SessionBase& session, const std::vector<std::string>& args) {
-      std::string test = "This is a test function to rest the strings";
+      std::string test = "This is a test function to rest the strings!!";
       return test;
   }
 
@@ -79,7 +79,7 @@ namespace  // anonymous (private) working area
     return results;
   }
   
-  std::any showTickets(Domain::Customer::Customer& session, const std::vector<std::string>& args)
+  std::any showTickets(Domain::Session::SessionBase& session, const std::vector<std::string>& args)
   {
       const int flightNum = std::stoi(args[0]);
       std::string results = "Flight Not Found";
