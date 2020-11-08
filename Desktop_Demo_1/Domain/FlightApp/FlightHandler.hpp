@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Domain::Flight
+namespace Domain::FlightApp
 {
   // Library Package within the Domain Layer Abstract class
   class FlightHandler

@@ -88,7 +88,7 @@ namespace TechnicalServices::Persistence
 
   std::vector<std::string> SimpleDB::findRoles()
   {
-    return { "Administrator", "Customer" };
+    return { "IT Manager", "Customer" };
   }
 
   UserCredentials SimpleDB::findCredentialsByName( const std::string & name )
@@ -97,6 +97,7 @@ namespace TechnicalServices::Persistence
     {
     // Email                  Password         Authorized roles
       {"jared@csuf.com",     "password",      {"Customer"}},
+      {"a@csuf.com",     "password",      {"IT Manager"}},
     };
 
     for( const auto & user : storedUsers ) if( user.userEmail == name ) return user;

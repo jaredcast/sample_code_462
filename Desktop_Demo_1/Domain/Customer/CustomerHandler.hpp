@@ -26,10 +26,8 @@ namespace Domain::Customer
       //   Work in progress ...
       //Customer will implement CustomerHandler. CustomerHandler is the interface
       //Add the virtual functions
-      //virtual std::vector<std::string> searchFlight(std::string origin, std::string dest, std::string startDate, std::string endDate)  = 0;
-      //virtual std::vector<std::string> bookFlight(int flightNum, int seats, int meals, int bags) = 0; //respond with flight number, and cost
-      //virtual std::vector<std::string> payCreditCard(int number, int pin, std::string name, std::string billingAdd, int cost) = 0; //flight info, receipt, ticket, email etc
       
+      //All virtual functions, temporarily std::any
       virtual std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)  = 0;
       virtual std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0; //respond with flight number, and cost
       virtual std::any hello(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0;

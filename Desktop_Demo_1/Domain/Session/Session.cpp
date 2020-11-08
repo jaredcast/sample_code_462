@@ -16,6 +16,8 @@ namespace  // anonymous (private) working area
   STUB( resetAccount )
   STUB( help         )
   STUB( shutdown     )
+  STUB( addFlight )
+  STUB(viewFlightInfo)
     
   //Replace later
   // std::any checkoutBook( Domain::Session::SessionBase & session, const std::vector<std::string> & args )
@@ -80,10 +82,12 @@ namespace Domain::Session
 
   // 2) Now map the above system events to roles authorized to make such a request.  Many roles can request the same event, and many
   //    events can be requested by a single role.
-  AdministratorSession::AdministratorSession( const UserCredentials & credentials ) : SessionBase( "Administrator", credentials )
+  ITManagerSession::ITManagerSession( const UserCredentials & credentials ) : SessionBase( "IT Manager", credentials )
   {
     _commandDispatch = { {"Help",            help        },
                          {"Reset Account",   resetAccount},
+                         {"Add Flight", addFlight},
+                         {"View Flight Info", viewFlightInfo},
                          {"Shutdown System", shutdown    } };
   }
   //Login returns menu in SSD
@@ -92,7 +96,7 @@ namespace Domain::Session
     _commandDispatch = { {"Search Flight", searchFlight},
                          {"Book Flight", bookFlight},
                          {"Show Ticket", showTickets},
-                         {"Hello", hello},
+                         //{"Hello", hello},
                          {"Pay with Credit Card", payCreditCard},
                          {"Help",          help        }};
   }

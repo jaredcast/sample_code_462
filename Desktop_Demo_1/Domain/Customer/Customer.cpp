@@ -13,20 +13,22 @@ namespace  // anonymous (private) working area
                               { return {}; }  // Stubbed for now
 
   std::vector<std::vector<std::string>> listOfFlights = { //used temporary until objects are implemented
-      // Origin 0, Destination 1, Departure date 2, return date 3, Stops 4, Price 5, Trip 6, Weather 7, Status 8
+      // Origin 0, Destination 1, Departure date 2, return date 3, Stops 4, Price 5, Trip 6, Weather 7, Status 8, flightnum 9, seats 10, meals 11, bags 12
       //COST WILL BE INDEX 5!!!
-      //flightnum 9, seats 10, meals 11, bags 12
+      // For the time being, this is hardcoded in
       {"Los Angeles", "Paris", "12/01/2019", "12/16/2019", "None", "$1000", "Round Trip,", "Sunny 73F", "Open", "1"},
       {"Los Angeles", "Paris", "12/01/2019", "12/16/2019", "Chicago", "$850", "Round Trip,", "Sunny 73F", "Open", "2"}
     };
 
   std::vector<std::vector<std::string>> bookedFlights = {};
 
+  //This is a temporary function to test our changes in the code - was having problems building, will remove once it is fixed
   std::any hello(Domain::Session::SessionBase& session, const std::vector<std::string>& args) {
-      std::string test = "This is a test function to rest the string!!!!!!!!!!!!!!!!!";
+      std::string test = "This is a test function to rest the string!!!!!!!";
       return test;
   }
 
+  //Searches for a flight based off the criteria
   std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   { 
     const std::string origin = args[0];
@@ -56,6 +58,7 @@ namespace  // anonymous (private) working area
     return results;
   }
 
+  //Books the flight with the provided flight number
   std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)
   {
     const int flightNum = std::stoi(args[0]); 
@@ -80,7 +83,8 @@ namespace  // anonymous (private) working area
     return results;
   }
   
-   std::any showTickets(Domain::Session::SessionBase& session, const std::vector<std::string>& args)
+  //Shows the ticket the customer has purchased - fix later   
+  std::any showTickets(Domain::Session::SessionBase& session, const std::vector<std::string>& args)
     {
         const int flightNum = std::stoi(args[0]);
         std::string results = "Flight Not Found";
@@ -98,7 +102,7 @@ namespace  // anonymous (private) working area
         return results;
     }
 
-
+  //Pay with a credit card
   std::any payCreditCard(Domain::Session::SessionBase& session, const std::vector <std::string > & args) {
     std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ".";
     return results;
