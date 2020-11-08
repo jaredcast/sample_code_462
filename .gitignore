@@ -78,3 +78,6 @@ Debug/Desktop_Demo_1.exe
 .vs/Desktop_Demo_1/v16/ipch/AutoPCH/9687fe2805dc8c72/SESSION.ipch
 .vs/Desktop_Demo_1/v16/ipch/AutoPCH/66eeae25b1f1ad72/CUSTOMER.ipch
 .vs/Desktop_Demo_1/v16/ipch/AutoPCH/19099cdebc262a80/SESSIONHANDLER.ipch
+.vs/
+Debug/
+.vscode/
