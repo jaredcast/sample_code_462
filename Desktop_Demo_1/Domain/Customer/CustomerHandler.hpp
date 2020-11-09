@@ -30,9 +30,9 @@ namespace Domain::Customer
       //All virtual functions, temporarily std::any
       virtual std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)  = 0;
       virtual std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0; //respond with flight number, and cost
-      virtual std::any hello(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0;
       virtual std::any showTickets(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0;
       virtual std::any payCreditCard(Domain::Session::SessionBase& session, const std::vector <std::string > & args) = 0;
+      virtual std::any hello(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0;
 
 
       //Exceptions

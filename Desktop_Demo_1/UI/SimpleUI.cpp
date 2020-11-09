@@ -8,7 +8,7 @@
 #include <string>      // string, getline()
 #include <vector>
 
-#include "Domain/Library/Flights.hpp"    // Include for now - will replace next increment
+#include "Domain/FlightApp/Flight.hpp"    // Include for now - will replace next increment
 #include "Domain/Session/SessionHandler.hpp"
 
 #include "TechnicalServices/Logging/LoggerHandler.hpp"
@@ -21,7 +21,7 @@ namespace UI
 {
   // Default constructor
   SimpleUI::SimpleUI()
-  : _flightHandler   ( std::make_unique<Domain::Library::Flights>()                     ),   // will replace these with factory calls in the next increment
+  : //_flightHandler   ( std::make_unique<Domain::Library::Flights>()                     ),   // will replace these with factory calls in the next increment
     _loggerPtr     ( TechnicalServices::Logging::LoggerHandler::create()            ),
     _persistentData( TechnicalServices::Persistence::PersistenceHandler::instance() )
   {

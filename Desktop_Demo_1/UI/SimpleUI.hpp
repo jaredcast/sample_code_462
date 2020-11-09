@@ -2,7 +2,7 @@
 
 #include <memory>    // std::unique_ptr
 
-#include "Domain/Library/MaintainFlightsHandler.hpp"
+//#include "Domain/FlightApp/MaintainFlightsHandler.hpp"
 
 #include "TechnicalServices/Logging/LoggerHandler.hpp"
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
@@ -37,7 +37,7 @@ namespace UI
 
     private:
       // These smart pointers hold pointers to lower architectural layer's interfaces
-      std::unique_ptr<Domain::Flights::MaintainFlightsHandler>                _flightHandler;
+      //std::unique_ptr<Domain::Flights::MaintainFlightsHandler>                _flightHandler;
 
       std::unique_ptr<TechnicalServices::Logging::LoggerHandler>            _loggerPtr;
       TechnicalServices::Persistence::PersistenceHandler                  & _persistentData;

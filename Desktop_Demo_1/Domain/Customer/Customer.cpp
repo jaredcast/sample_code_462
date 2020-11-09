@@ -24,7 +24,7 @@ namespace  // anonymous (private) working area
 
   //This is a temporary function to test our changes in the code - was having problems building, will remove once it is fixed
   std::any hello(Domain::Session::SessionBase& session, const std::vector<std::string>& args) {
-      std::string test = "This is a test function to rest the string!!!!!!!";
+      std::string test = "This is a test function to rest the string!";
       return test;
   }
 
@@ -38,13 +38,14 @@ namespace  // anonymous (private) working area
     std::string results = "";
     std::vector<std::vector<std::string>> matchFlights;
     for (auto flight : listOfFlights) {
-      bool oriCheck = (std::find(flight.begin(), flight.end(), origin) != flight.end());
-      bool destinationCheck = (std::find(flight.begin(), flight.end(), destination) != flight.end());
-      bool deptCheck = (std::find(flight.begin(), flight.end(), dept) != flight.end());
-      bool retCheck = (std::find(flight.begin(), flight.end(), ret) != flight.end());
-      if (oriCheck && destinationCheck && deptCheck && retCheck) { matchFlights.push_back(flight); }
+      bool oriCheck = flight[0] == origin;
+      bool destinationCheck = flight[1] == destination;
+      bool deptCheck = flight[2] == dept;
+      bool returnCheck = flight[3] == ret;
+      if (oriCheck == true && destinationCheck == true && deptCheck == true && returnCheck == true) { matchFlights.push_back(flight); }
     }
     std::cout << "\nList of flights matching your search filters: \n";
+    if (matchFlights.size() == 0) { std::cout << "None matched your parameters.\n";}
     for (auto flight : matchFlights) {
       std::cout << "Flight #" << flight[9] << " ";
       for (int x = 0; x < flight.size(); x++) {
