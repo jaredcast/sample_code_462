@@ -11,7 +11,7 @@
 
 
 
-namespace Domain::Customer
+namespace Domain
 {
   CustomerHandler::~CustomerHandler() noexcept = default;
 

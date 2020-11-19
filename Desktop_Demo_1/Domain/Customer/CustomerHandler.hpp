@@ -9,7 +9,7 @@
 #include "Domain/Session/Session.hpp"
 #include "Domain/Session/SessionHandler.hpp"
 
-namespace Domain::Customer
+namespace Domain
 {
 
   using TechnicalServices::Persistence::UserCredentials;
