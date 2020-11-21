@@ -149,11 +149,12 @@ namespace UI
       }
 
       else if( selectedCommand == "Pay with Credit Card" ) { //Booking the flight
-        std::vector<std::string> parameters( 4 );
+        std::vector<std::string> parameters( 5 );
         std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline( std::cin, parameters[0] );
         std::cout << "Enter card number: "; std::cin >> std::ws;  std::getline( std::cin, parameters[1] );
-        std::cout << "Enter security pin "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
-        std::cout << "Enter billing address "; std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
+        std::cout << "Enter security pin: "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
+        std::cout << "Enter billing address: "; std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
+        std::cout << "Enter cost: "; std::cin >> std::ws;  std::getline( std::cin, parameters[4] );
 
         auto results = sessionControl->executeCommand( selectedCommand, parameters );
         if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';

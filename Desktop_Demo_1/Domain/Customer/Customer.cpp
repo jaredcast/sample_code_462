@@ -105,7 +105,9 @@ namespace  // anonymous (private) working area
 
   //Pay with a credit card
   std::any payCreditCard(Domain::Session::SessionBase& session, const std::vector <std::string > & args) {
-    std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ".";
+    int flightNum = stoi(args[0]);
+    std::vector<std::string> tempFlight = listOfFlights[flightNum];
+    std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ". Total cost: " + args[4];
     return results;
   }
 
