@@ -98,13 +98,15 @@ namespace UI
       do
       {
         for( unsigned i = 0; i != commands.size(); ++i ) std::cout << std::setw( 2 ) << i << " - " << commands[i] << '\n';
-        std::cout << std::setw( 2 ) << commands.size() << " - " << "Log off\n";
+        std::cout << std::setw( 2 ) << commands.size() << " - " << "Log off\n"; //This will be set to commands.size()
 
         std::cout << "  action (0-" << commands.size() << "): ";
         std::cin >> menuSelection;
       } while( menuSelection > commands.size() );
 
-      if( menuSelection == commands.size() ) break;
+      //if( menuSelection == commands.size() ) break; //If menuselection is the size of commands, break out of this and end
+      if( menuSelection == commands.size() ) {sessionControl->logOff();
+      break;};
 
       selectedCommand = commands[menuSelection];
       _logger << "Command selected \"" + selectedCommand + '"';

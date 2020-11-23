@@ -19,6 +19,7 @@ namespace Domain::Session
       // Operations
       std::vector<std::string> getCommands   ()                                                                     override;    // retrieves the list of actions (commands)
       std::any                 executeCommand( const std::string & command, const std::vector<std::string> & args ) override;    // executes one of the actions retrieved
+      void logOff() override;
 
 
       // Destructor

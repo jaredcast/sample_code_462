@@ -79,6 +79,10 @@ namespace Domain::Session
     return results;
   }
 
+  void SessionBase::logOff() {
+    std::cout << "Logging off..." << std::endl;
+  }
+
 
   // 2) Now map the above system events to roles authorized to make such a request.  Many roles can request the same event, and many
   //    events can be requested by a single role.
