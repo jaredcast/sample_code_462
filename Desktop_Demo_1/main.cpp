@@ -6,6 +6,9 @@
 
 #include "UI/UserInterfaceHandler.hpp"
 
+//cd C:\Users\jared\Documents\GitHub\sample_code_462\Desktop_Demo_1
+// /g++ -o main.exe main.cpp -I. UI/*.cpp Domain/Customer/*.cpp Domain/Session/*.cpp TechnicalServices/Logging/*.cpp TechnicalServices/Persistence/*.cpp -std=c++17
+
 int main( /*int argc, char argv[] */ )
 {
   try
