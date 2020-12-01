@@ -12,8 +12,8 @@
 class Ticket
 {
   public:
-    Ticket(int flightNum, int seatNum, std::string origin, std::string destination, std::string deptDate, int bags, double price)
-    : _flightNum(flightNum), _seatNum(seatNum), _origin(origin), _destination(destination), _deptDate(deptDate), _bags(bags), _price(price)
+    Ticket(std::string type, double price)
+    : _type(type), _price(price)
     {}
 
     virtual void open() = 0;
@@ -21,41 +21,60 @@ class Ticket
     virtual ~Ticket()     = 0; // force the class to be abstract
 
   protected:
-      int _flightNum;
-      int _seatNum;
-      std::string _origin;
-      std::string _destination;
-      std::string _deptDate;
-      int _bags;
+      std::string _type;
       double _price;
 };
 
 inline Ticket::~Ticket()
 {}
 
-// LA to Paris Ticket Concrete Product
-class LAtoParisTicket : public Ticket
+// First Class Ticket Concrete Product
+class FirstClassTicket : public Ticket
 {
   public:
-    LAtoParisTicket(int flightNum = 1, int seatNum = 1, std::string origin = "Los Angeles", std::string destination = "Paris", std::string deptDate = "12/01/2019", int bags = 2, double price = 1000)
-    : Ticket(flightNum, seatNum, origin, destination, deptDate, bags, price)
+    FirstClassTicket(std::string type = "First Class", double price = 1000)
+    : Ticket(type, price)
     {
-      std::cout << "Created LA to Paris Ticket number " << (_TicketID = ++_counter) << '\n';
+      std::cout << "Created First Class Ticket number " << (_TicketID = ++_counter) << '\n';
     }
 
     void open() override
     {}
 
-    ~LAtoParisTicket() override
+    ~FirstClassTicket() override
     {
-      std::cout << "Destroyed LA to Paris Ticket number " << _TicketID << '\n';
+      std::cout << "Destroyed First Class Ticket number " << _TicketID << '\n';
     }
 
   private:
     static long unsigned _counter; // class attribute to count the number of wooden Ticket made
     long unsigned        _TicketID = 0;
 };
-long unsigned LAtoParisTicket::_counter = 0; // Allocate storage for class attribute
+long unsigned FirstClassTicket::_counter = 0; // Allocate storage for class attribute
+
+// First Class Ticket Concrete Product
+class BusinessClassTicket : public Ticket
+{
+public:
+    BusinessClassTicket(std::string type = "Business Class", double price = 750)
+        : Ticket(type, price)
+    {
+        std::cout << "Created Business Class Ticket number " << (_TicketID = ++_counter) << '\n';
+    }
+
+    void open() override
+    {}
+
+    ~BusinessClassTicket() override
+    {
+        std::cout << "Destroyed Business Class Ticket number " << _TicketID << '\n';
+    }
+
+private:
+    static long unsigned _counter; // class attribute to count the number of wooden Ticket made
+    long unsigned        _TicketID = 0;
+};
+long unsigned BusinessClassTicket::_counter = 0; // Allocate storage for class attribute
 
 /*******************************************************************************
 **          TICKET FACTORIES
@@ -67,18 +86,29 @@ struct TicketFactory
   static TicketFactory * createFactory();
 
   // All Ticket Factories have these functions
-  virtual Ticket * createTicket(int flightNum, int seatNum, std::string origin, std::string destination, std::string deptDate, int bags, double price) = 0;
+  virtual Ticket * createTicket(std::string type, double price) = 0;
 };
 
 
 // Carpenter Concrete Factory
-struct LAtoParisFactory : TicketFactory
+struct FirstClassFactory : TicketFactory
 {
   // Note:  Responsibility to delete this object passes to the caller
   //        Smart pointers would be a great idea here
   // Note the covariant return type!
-  LAtoParisTicket * createTicket(int flightNum, int seatNum, std::string origin, std::string destination, std::string deptDate, int bags, double price) override
-  { return new LAtoParisTicket(flightNum, seatNum, origin, destination, deptDate, bags, price); }
+  FirstClassTicket * createTicket(std::string type, double price) override
+  { return new FirstClassTicket(type, price); }
+};
+
+struct BusinessFactory : TicketFactory
+{
+    // Note:  Responsibility to delete this object passes to the caller
+    //        Smart pointers would be a great idea here
+    // Note the covariant return type!
+    BusinessClassTicket* createTicket(std::string type, double price) override
+    {
+        return new BusinessClassTicket(type, price);
+    }
 };
 
 /*          How to use          */

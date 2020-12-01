@@ -8,7 +8,7 @@
 #include <string>      // string, getline()
 #include <vector>
 
-#include "Domain/FlightApp/Flight.hpp"    // Include for now - will replace next increment
+#include "Domain/Meal/Meal.hpp"    // Include for now - will replace next increment
 #include "Domain/Session/SessionHandler.hpp"
 
 #include "TechnicalServices/Logging/LoggerHandler.hpp"
@@ -132,10 +132,14 @@ namespace UI
       }
 
       else if( selectedCommand == "Book Flight" ) { //Booking the flight
+        Vegetarian vegetarian;
+        Kids kids;
         std::vector<std::string> parameters( 4 );
         std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline( std::cin, parameters[0] );
         std::cout << "How many seats?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[1] );
-        std::cout << "How many meals?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
+        std::cout << "What kind of meal?\n ";
+        for (auto meal : Meal::entirePopulation()) std::cout << displayMeal(*meal) << '\n';
+        std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
         std::cout << "How many bags?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
 
         auto results = sessionControl->executeCommand( selectedCommand, parameters );

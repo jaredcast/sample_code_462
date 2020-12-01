@@ -8,9 +8,9 @@ TicketFactory * TicketFactory::createFactory()
   // pretend a call to get the desired type of Ticket from the configuration
   // data returned "Plastic".  In particular, note that no data is passed into
   // the creatFactory function;
-  std::string factoryPreference = "LA to Paris";
+  std::string factoryPreference = "First Class Ticket";
 
-  if      ( factoryPreference == "LA to Paris" ) return new LAtoParisFactory();
+  if      ( factoryPreference == "First Class Ticket" ) return new FirstClassFactory();
   //else if ( factoryPreference == "" )  return new Factory;
   else
   {
