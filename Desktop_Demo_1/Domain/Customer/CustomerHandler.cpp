@@ -13,8 +13,8 @@
 
 namespace Domain
 {
-  CustomerHandler::~CustomerHandler() noexcept = default;
-
+  //CustomerHandler::~CustomerHandler() noexcept = default;
+  //might need if we implement a factory static function
 
   /*
 

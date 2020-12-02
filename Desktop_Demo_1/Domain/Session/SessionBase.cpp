@@ -1,4 +1,4 @@
-#include "Domain/Session/Session.hpp"
+#include "Domain/Session/SessionBase.hpp"
 #include "Domain/Customer/Customer.cpp"
 #include "Domain/Customer/Customer.hpp"
 #include "Domain/Customer/CustomerHandler.hpp"

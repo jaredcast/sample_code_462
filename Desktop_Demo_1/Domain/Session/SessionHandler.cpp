@@ -5,7 +5,7 @@
 #include <stdexcept>    // logic_error
 #include <string>
 
-#include "Domain/Session/Session.hpp"
+#include "Domain/Session/SessionBase.hpp"
 
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 

@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-
+//class
 namespace Domain::Customer 
 {
   class Customer : public CustomerHandler //customer implements customershandler interface
@@ -24,11 +24,11 @@ namespace Domain::Customer
         //add to interface of CustomerHandler. still need here to implement interface
         //override - implement functions from base class
 
-        std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args) override;
-        std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args) override; //respond with flight number, and cost
-        std::any payCreditCard(Domain::Session::SessionBase & session, const std::vector<std::string> & args) override; //flight info, receipt, ticket, email etc
-        std::any showTickets(Domain::Session::SessionBase& session, const std::vector <std::string > & args) override;
-        std::any hello(Domain::Session::SessionBase & session, const std::vector<std::string> & args) override;
+        std::any searchFlight(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) override;
+        std::any bookFlight(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) override; //respond with flight number, and cost
+        std::any payCreditCard(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) override; //flight info, receipt, ticket, email etc
+        std::any showTickets(Domain::Session::SessionHandler& session, const std::vector <std::string > & args) override;
+        std::any hello(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) override;
 
 
         // Dispatched functions need access to these attributes, so for now make these public instead of protected

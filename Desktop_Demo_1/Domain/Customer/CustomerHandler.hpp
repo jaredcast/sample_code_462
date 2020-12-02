@@ -6,9 +6,12 @@
 #include <string>
 #include <vector>
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
-#include "Domain/Session/Session.hpp"
+//Got rid of session.hpp as requested in email 11/29/2020
+//An interface can include other interfaces at or below the same level, but never a concrete class.  "
 #include "Domain/Session/SessionHandler.hpp"
 
+
+//interface
 namespace Domain::Customer //Add back the customer handler part here???  Domain::Customer
 {
 
@@ -28,11 +31,11 @@ namespace Domain::Customer //Add back the customer handler part here???  Domain:
       //Add the virtual functions
       
       //All virtual functions, temporarily std::any. virtual function - 
-      virtual std::any searchFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args)  = 0;
-      virtual std::any bookFlight(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0; //respond with flight number, and cost
-      virtual std::any showTickets(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0;
-      virtual std::any payCreditCard(Domain::Session::SessionBase& session, const std::vector <std::string > & args) = 0;
-      virtual std::any hello(Domain::Session::SessionBase & session, const std::vector<std::string> & args) = 0;
+      virtual std::any searchFlight(Domain::Session::SessionHandler & session, const std::vector<std::string> & args)  = 0;
+      virtual std::any bookFlight(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) = 0; //respond with flight number, and cost
+      virtual std::any showTickets(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) = 0;
+      virtual std::any payCreditCard(Domain::Session::SessionHandler& session, const std::vector <std::string > & args) = 0;
+      virtual std::any hello(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) = 0;
 
 
       //Exceptions
