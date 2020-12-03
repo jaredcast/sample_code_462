@@ -48,6 +48,7 @@ namespace Domain::Customer //Add back the customer handler part here???  Domain:
       //Operations
       virtual std::vector<std::string> getCommands   ()                                                                     = 0; // retrieves the list of actions (commands)
       virtual std::any                 executeCommand( const std::string & command, const std::vector<std::string> & args ) = 0; // Throws BadCommand
+      
 
       // Destructor
       // Pure virtual destructor helps force the class to be abstract, but must still be implemented

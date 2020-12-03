@@ -18,7 +18,6 @@ namespace Domain::Customer
 
         std::vector<std::string> getCommands   ()                                                                     override;    // retrieves the list of actions (commands)
         std::any                 executeCommand( const std::string & command, const std::vector<std::string> & args ) override;    // executes one of the actions retrieved
-
     
         // Operations
         //add to interface of CustomerHandler. still need here to implement interface

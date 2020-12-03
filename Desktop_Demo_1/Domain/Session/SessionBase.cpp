@@ -79,6 +79,11 @@ namespace Domain::Session
     return results;
   }
 
+  UserCredentials SessionBase::getCredentials() {
+    return _credentials;
+  }
+
+
   void SessionBase::logOff() {
     std::cout << "Logging off..." << std::endl;
   }

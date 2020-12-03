@@ -23,7 +23,7 @@ namespace  // anonymous (private) working area
   std::vector<std::vector<std::string>> bookedFlights = {};
 
   //This is a temporary function to test our changes in the code - was having problems building, will remove once it is fixed
-  std::any hello(Domain::Session::SessionBase& session, const std::vector<std::string>& args) { //Change the header here too!!!! 12/1/2020
+  std::any hello(Domain::Session::SessionHandler& session, const std::vector<std::string>& args) { //Change the header here too!!!! 12/1/2020
       std::string test = "This is a test function to rest the string!";
       return test;
   }
@@ -31,6 +31,7 @@ namespace  // anonymous (private) working area
   //Searches for a flight based off the criteria
   std::any searchFlight(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) //With SessionHandler
   { 
+    auto userCred = session.getCredentials();
     const std::string origin = args[0];
     const std::string destination = args[1]; 
     const std::string dept = args[2];
@@ -55,13 +56,14 @@ namespace  // anonymous (private) working area
       std::cout << "\n";
     }
 
-    results.append(" returned to "+ session._credentials.userEmail); //credentials is giving us a problem here. 
+    results.append(" returned to "+ userCred.userEmail); //credentials is giving us a problem here. 
     return results;
   }
 
   //Books the flight with the provided flight number
   std::any bookFlight(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) //With SessionBase
   {
+    auto userCred = session.getCredentials();
     const int flightNum = std::stoi(args[0]); 
     const int seats = std::stoi(args[1]); 
     const int meals = std::stoi(args[2]); 
@@ -80,28 +82,29 @@ namespace  // anonymous (private) working area
         break;}
     }
     //std::vector<std::string> flightAndCost = { bookedFlight[9], bookedFlight[5]};
-    results.append("Total cost: " + bookedFlight[5] + "\nPayment is required by " + session._credentials.userEmail); //fix credentials
+    results.append("Total cost: " + bookedFlight[5] + "\nPayment is required by " + userCred.userEmail); //fix credentials
     return results;
   }
   
   //Shows the ticket the customer has purchased - fix later   
   std::any showTickets(Domain::Session::SessionHandler & session, const std::vector<std::string> & args)
-    {
-        const int flightNum = std::stoi(args[0]);
-        std::string results = "Flight Not Found";
-        for (auto flight : bookedFlights)
-        {
-            if (flight[9] == args[0])
-            {
-                results = "\n""Name: " + session._credentials.userEmail + "\n" + //fix credentials
-                    "Departure Date: " + flight[2] + "      Departure From: " + flight[0] + "\n"
-                    + "Destenation:  " + flight[1] + "             Stops: " + flight[4] + "\n"
-                    + "Number of Seats: 1        Numbers of Meals: 1        Number of Bags: 1";
-                break;
-            }
-        }
-        return results;
-    }
+  {
+      auto userCred = session.getCredentials();
+      const int flightNum = std::stoi(args[0]);
+      std::string results = "Flight Not Found";
+      for (auto flight : bookedFlights)
+      {
+          if (flight[9] == args[0])
+          {
+              results = "\n""Name: " + userCred.userEmail + "\n" + //fix credentials
+                  "Departure Date: " + flight[2] + "      Departure From: " + flight[0] + "\n"
+                  + "Destenation:  " + flight[1] + "             Stops: " + flight[4] + "\n"
+                  + "Number of Seats: 1        Numbers of Meals: 1        Number of Bags: 1";
+              break;
+          }
+      }
+      return results;
+  }
 
   //Pay with a credit card
   std::any payCreditCard(Domain::Session::SessionBase& session, const std::vector <std::string > & args) {

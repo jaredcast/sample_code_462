@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Domain\Session\Session.hpp">
+    <ClInclude Include="Domain\Session\SessionBase.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Domain\Session\SessionHandler.hpp">
@@ -56,7 +56,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Domain\Session\Session.cpp">
+    <ClCompile Include="Domain\Session\SessionBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Domain\Session\SessionHandler.cpp">

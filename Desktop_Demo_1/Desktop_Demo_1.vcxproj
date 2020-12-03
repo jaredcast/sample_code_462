@@ -145,7 +145,7 @@
     <ClInclude Include="Domain\Customer\CustomerHandler.hpp" />
     <ClInclude Include="Domain\Library\Flights.hpp" />
     <ClInclude Include="Domain\Library\MaintainFlightsHandler.hpp" />
-    <ClInclude Include="Domain\Session\Session.hpp" />
+    <ClInclude Include="Domain\Session\SessionBase.hpp" />
     <ClInclude Include="Domain\Session\SessionHandler.hpp" />
     <ClInclude Include="TechnicalServices\Logging\LoggerHandler.hpp" />
     <ClInclude Include="TechnicalServices\Logging\SimpleLogger.hpp" />
@@ -157,7 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Domain\Customer\Customer.cpp" />
-    <ClCompile Include="Domain\Session\Session.cpp" />
+    <ClCompile Include="Domain\Session\SessionBase.cpp" />
     <ClCompile Include="Domain\Session\SessionHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TechnicalServices\Logging\LoggerHandler.cpp" />

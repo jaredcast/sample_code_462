@@ -7,6 +7,7 @@
 
 #include "Domain/Session/SessionHandler.hpp"
 #include "TechnicalServices/Logging/LoggerHandler.hpp"
+
 /*
 //SessionBase IS A SESSION HANDLER
 //need a PAYMENT SERVICE INTERFACE inside TechnicalServices
@@ -32,6 +33,7 @@ namespace Domain::Session
       // Operations
       std::vector<std::string> getCommands   ()                                                                     override;    // retrieves the list of actions (commands)
       std::any                 executeCommand( const std::string & command, const std::vector<std::string> & args ) override;    // executes one of the actions retrieved
+      UserCredentials getCredentials() override;
       void logOff() override;
 
 
