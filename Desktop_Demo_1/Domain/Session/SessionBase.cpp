@@ -10,7 +10,7 @@
 namespace  // anonymous (private) working area
 {
   // 1)  First define all system events (commands, actions, requests, etc.)
-  #define STUB(functionName)  std::any functionName( Domain::Session::SessionBase & /*session*/, const std::vector<std::string> & /*args*/ ) \
+  #define STUB(functionName)  std::any functionName( Domain::Session::SessionHandler & /*session*/, const std::vector<std::string> & /*args*/ ) \
                               { return {}; }  // Stubbed for now
 
   STUB( resetAccount )

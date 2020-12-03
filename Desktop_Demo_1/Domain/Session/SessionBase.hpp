@@ -44,14 +44,15 @@ namespace Domain::Session
   protected: 
   public:  // Dispatched functions need access to these attributes, so for now make these public instead of protected
     // Types
-    using DispatchTable = std::map<std::string, std::any (*)( Domain::Session::SessionBase &, const std::vector<std::string> & )>;
+    using DispatchTable = std::map<std::string, std::any (*)( Domain::Session::SessionHandler &, const std::vector<std::string> & )>; 
+    //Returns an any object that takes a vector of strings and then a reference to SessionHandler
     friend class Policy;
 
     // Instance Attributes
     std::unique_ptr<TechnicalServices::Logging::LoggerHandler> _loggerPtr = TechnicalServices::Logging::LoggerHandler::create();
     TechnicalServices::Logging::LoggerHandler &                _logger    = *_loggerPtr;
 
-    UserCredentials const                                      _credentials; //These need to move?
+    UserCredentials const                                      _credentials; 
     std::string     const                                      _name      = "Undefined";
     DispatchTable                                              _commandDispatch;
   };    // class SessionBase
