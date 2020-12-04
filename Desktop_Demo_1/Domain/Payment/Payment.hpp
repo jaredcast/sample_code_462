@@ -1,12 +1,12 @@
+#pragma once
+#include "Domain/Ticket/TicketHandler.hpp"
+#include "Domain/Session/SessionBase.hpp"
+#include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include <string>
 #include <new>
 #include <iostream>
 #include <stdexcept>
-
-
-
-
-
+#include <any>
 
 /*******************************************************************************
 **          PAYMENTS
@@ -145,6 +145,26 @@ struct MasterCardFactory : PaymentFactory
     }
 };
 */
+
+std::any displayPaymentType(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
+{
+    Visa visa;
+    Credit credit;
+    //MasterCard mastercard;
+    std::string results = "";
+    const std::string paymentType = args[0];
+    if (paymentType == "Visa") {
+        visa.open();
+    }
+    else if (paymentType == "Credit") {
+        credit.open();
+    }
+    //else if (paymentType == "Master Card") {
+    //    mastercard.open();
+    //}
+    results = "\nEntered " + args[0] + " payment type.";
+    return results;
+}
 
 
 

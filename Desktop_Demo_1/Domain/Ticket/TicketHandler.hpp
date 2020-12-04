@@ -44,16 +44,12 @@ namespace Domain::Ticket
         TicketHandler& operator=(TicketHandler&& rhs) = default;  // move assignment
 
 
-    };    // class CustomerHandler
-
-
-
-
+    };    // class TicketHandler
 
     /*****************************************************************************
     ** Inline implementations
     ******************************************************************************/
-    //inline CustomerHandler::~CustomerHandler() noexcept = default;
+    //inline PaymentHandler::~PaymentHandler() noexcept = default;
 
 
 } // namespace Domain::Library

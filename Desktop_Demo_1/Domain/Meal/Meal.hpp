@@ -141,14 +141,14 @@ namespace
         Kids km;
         //Pescatarian p;
         std::string results = "";
-        const std::string classType = args[0];
-        if (classType == "Vegetarian") {
+        const std::string mealType = args[0];
+        if (mealType == "Vegetarian") {
             results = v.getMeal();
         }
-        else if (classType == "Kids Meal") {
+        else if (mealType == "Kids Meal") {
             results = km.getMeal();
         }
-        //else if (classType == "Pescatarian") {
+        //else if (mealType == "Pescatarian") {
         //    results = p.getMeal();
         //}
 
