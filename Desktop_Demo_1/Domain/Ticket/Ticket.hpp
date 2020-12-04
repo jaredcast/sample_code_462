@@ -132,6 +132,7 @@ namespace
         {
             return bc.getTicket();
         }
+        else return ticket;
         //else if (ticket == "Economy Class")
         //{
         //    return ec.getTicket();

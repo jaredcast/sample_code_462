@@ -70,7 +70,7 @@ namespace  // anonymous (private) working area
     const int bags = std::stoi(args[3]);
     const std::string classType = args[4];
 
-    std::string results = "Flight number " + args[0] + " will be booked with " + args[1] + " seat(s), with " + displayMeal(meals) + ", " + args[3] + " bags. The ticket type is " + displayClass(classType);
+    std::string results = "Flight number " + args[0] + " will be booked with " + args[1] + " seat(s), with " + displayMeal(meals) + ", " + args[3] + " bags. The ticket type is " + displayClass(classType) + ".";
 
     //std::cout << "Flight number " << flightNum << " will be booked with " << 
     //seats << " seats, " << meals << " meals, and " << bags << "bags.\n"; //Add later on
