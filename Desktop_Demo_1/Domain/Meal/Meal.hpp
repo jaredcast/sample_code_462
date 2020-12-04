@@ -1,8 +1,11 @@
 #pragma once
+#include "Domain/Ticket/TicketHandler.hpp"
+#include "Domain/Session/SessionBase.hpp"
+#include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include <iostream>
 #include <string>
 #include <set>
-
+#include <any>
 namespace
 {
     /*******************************************************************************
@@ -11,7 +14,7 @@ namespace
     class Meal
     {
     public:
-        virtual std::string getDetails() const = 0;
+        virtual std::string getMeal() const = 0;
         virtual std::string foodType() const = 0;
         virtual std::string drinkType()       const = 0;
 
@@ -48,19 +51,19 @@ namespace
             : Meal(this), _name(name)
         {}
 
-        std::string getDetails() const override
+        std::string getMeal() const override
         {
             return _name + foodType() + drinkType();
         }
 
         std::string foodType() const override
         {
-            return "\n\tSalad, ";
+            return "\tSalad";
         }
 
         std::string drinkType() const override
         {
-            return "Water, ";
+            return "\tWater";
         }
 
         virtual ~Vegetarian()
@@ -77,19 +80,19 @@ namespace
             : Meal(this), _name(name)
         {}
 
-        std::string getDetails() const override
+        std::string getMeal() const override
         {
             return _name + foodType() + drinkType();
         }
 
         std::string foodType() const override
         {
-            return "\n\tChicken Nuggets, ";
+            return "\tChicken Nuggets";
         }
 
         std::string drinkType() const override
         {
-            return "Orange Juice, ";
+            return "\tOrange Juice";
         }
 
         virtual ~Kids()
@@ -106,19 +109,19 @@ namespace
             : Meal(this), _name(name)
         {}
 
-        std::string getDetails() const override
+        std::string getMeal() const override
         {
             return _name + foodType() + drinkType();
         }
 
         std::string foodType() const override
         {
-            return "\nFood: Salmon";
+            return "\tSalmon";
         }
 
         std::string drinkType() const override
         {
-            return "\tDrink: nWater";
+            return "\tWater";
         }
 
         virtual ~Pescatarian()
@@ -132,8 +135,23 @@ namespace
     **  Code to the Interface
     *******************************************************************************/
     // Passing by reference (vice value) is imperative!!  Pass by reference either by reference (&) or by pointer (*)
-    std::string displayMeal(const Meal& meal)
+    std::any displayMeal(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
     {
-        return meal.getDetails();
+        Vegetarian v;
+        Kids km;
+        //Pescatarian p;
+        std::string results = "";
+        const std::string classType = args[0];
+        if (classType == "Vegetarian") {
+            results = v.getMeal();
+        }
+        else if (classType == "Kids Meal") {
+            results = km.getMeal();
+        }
+        //else if (classType == "Pescatarian") {
+        //    results = p.getMeal();
+        //}
+
+        return results;
     }
 }
