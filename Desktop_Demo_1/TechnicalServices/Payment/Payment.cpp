@@ -1,4 +1,4 @@
-#include "Domain/Payment/Payment.hpp"
+#include "TechnicalServices/Payment/Payment.hpp"
 
 // This normally goes in the .cpp file ...
 PaymentFactory* PaymentFactory::createFactory()

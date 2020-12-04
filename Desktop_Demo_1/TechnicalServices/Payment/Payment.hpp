@@ -1,6 +1,6 @@
 #pragma once
-#include "Domain/Ticket/TicketHandler.hpp"
-#include "Domain/Session/SessionBase.hpp"
+//#include "Domain/Session/SessionBase.hpp"
+#include "TechnicalServices/Payment/PaymentHandler.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include <string>
 #include <new>
