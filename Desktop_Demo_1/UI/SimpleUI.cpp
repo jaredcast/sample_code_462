@@ -132,11 +132,12 @@ namespace UI
       }
 
       else if( selectedCommand == "Book Flight" ) { //Booking the flight
-        std::vector<std::string> parameters( 4 );
+        std::vector<std::string> parameters( 5 );
         std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline( std::cin, parameters[0] );
         std::cout << "How many seats?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[1] );
-        std::cout << "How many meals?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
+        std::cout << "What kind of meal?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
         std::cout << "How many bags?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
+        std::cout << "What class type flight?: "; std::cin >> std::ws;  std::getline(std::cin, parameters[4]);
 
         auto results = sessionControl->executeCommand( selectedCommand, parameters );
         if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';

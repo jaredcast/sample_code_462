@@ -16,7 +16,6 @@ namespace
     {
     public:
         virtual std::string getTicket() const = 0;
-        virtual std::string type() const = 0;
         virtual std::string price()      const = 0;
 
         static std::set<Ticket*>& entirePopulation()
@@ -48,23 +47,18 @@ namespace
     class FirstClass : public Ticket
     {
     public:
-        FirstClass(const std::string& name = "First Class:")
+        FirstClass(const std::string& name = "first class")
             : Ticket(this), _name(name)
         {}
 
         std::string getTicket() const override
         {
-            return _name + type() + price();
-        }
-
-        std::string type() const override
-        {
-            return "\n\tFirst Class, ";
+            return _name + price();
         }
 
         std::string price() const override
         {
-            return "$500";
+            return " for $500.";
         }
 
         virtual ~FirstClass()
@@ -77,23 +71,18 @@ namespace
     class BusinessClass : public Ticket
     {
     public:
-        BusinessClass(const std::string& name = "Business Class: ")
+        BusinessClass(const std::string& name = "business class")
             : Ticket(this), _name(name)
         {}
 
         std::string getTicket() const override
         {
-            return _name + type() + price();
-        }
-
-        std::string type() const override
-        {
-            return "\n\tBusiness Class, ";
+            return _name + price();
         }
 
         std::string price() const override
         {
-            return "$250";
+            return " for $250.";
         }
 
         virtual ~BusinessClass()
@@ -112,12 +101,7 @@ namespace
 
         std::string getTicket() const override
         {
-            return _name + type() + price();
-        }
-
-        std::string type() const override
-        {
-            return "\n\tEcoonomy Class, ";
+            return _name + price();
         }
 
         std::string price() const override
@@ -135,8 +119,26 @@ namespace
     /*******************************************************************************
     **  Code to the Interface
     *******************************************************************************/
+    std::string displayClass(const std::string& ticket)
+    {
+        FirstClass fc;
+        BusinessClass bc;
+        //EconomyClass ec;
+        if (ticket == "First Class")
+        {
+            return fc.getTicket();
+        }
+        else if (ticket == "Business Class")
+        {
+            return bc.getTicket();
+        }
+        //else if (ticket == "Economy Class")
+        //{
+        //    return ec.getTicket();
+        //}
+    }
     // Passing by reference (vice value) is imperative!!  Pass by reference either by reference (&) or by pointer (*)
-    std::any displayTicket(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
+    /*std::any displayTicket(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
     {
         FirstClass fc;
         BusinessClass bc;
@@ -155,4 +157,5 @@ namespace
 
         return results;
     }
+    */
 }

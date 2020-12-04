@@ -6,6 +6,7 @@
 #include <string>
 #include <set>
 #include <any>
+
 namespace
 {
     /*******************************************************************************
@@ -47,7 +48,7 @@ namespace
     class Vegetarian : public Meal
     {
     public:
-        Vegetarian(const std::string& name = "Vegetarian:")
+        Vegetarian(const std::string& name = "a vegetarian meal")
             : Meal(this), _name(name)
         {}
 
@@ -58,12 +59,12 @@ namespace
 
         std::string foodType() const override
         {
-            return "\tSalad";
+            return " that comes with a salad and ";
         }
 
         std::string drinkType() const override
         {
-            return "\tWater";
+            return "water";
         }
 
         virtual ~Vegetarian()
@@ -76,7 +77,7 @@ namespace
     class Kids : public Meal
     {
     public:
-        Kids(const std::string& name = "\n\nKids Meal:")
+        Kids(const std::string& name = " a kids meal")
             : Meal(this), _name(name)
         {}
 
@@ -87,12 +88,12 @@ namespace
 
         std::string foodType() const override
         {
-            return "\tChicken Nuggets";
+            return " that comes with chicken nuggets and ";
         }
 
         std::string drinkType() const override
         {
-            return "\tOrange Juice";
+            return "orange juice";
         }
 
         virtual ~Kids()
@@ -102,10 +103,10 @@ namespace
         std::string _name;
     };
 
-    /*class Pescatarian : public Meal
+    /*class NoMeal : public Meal
     {
     public:
-        Pescatarian(const std::string& name = "Pescatarian:")
+        Pescatarian(const std::string& name = "no meal")
             : Meal(this), _name(name)
         {}
 
@@ -116,15 +117,15 @@ namespace
 
         std::string foodType() const override
         {
-            return "\tSalmon";
+            return "";
         }
 
         std::string drinkType() const override
         {
-            return "\tWater";
+            return "";
         }
 
-        virtual ~Pescatarian()
+        virtual ~NoMeal()
         {}
 
     private:
@@ -135,7 +136,25 @@ namespace
     **  Code to the Interface
     *******************************************************************************/
     // Passing by reference (vice value) is imperative!!  Pass by reference either by reference (&) or by pointer (*)
-    std::any displayMeal(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
+    std::string displayMeal(const std::string& meal)
+    {
+        Vegetarian v;
+        Kids km;
+        //Pescatarian p;
+        if (meal == "Vegetarian")
+        {
+            return v.getMeal();
+        }
+        else if (meal == "Kids Meal")
+        {
+            return km.getMeal();
+        }
+        //else if (meal == "Pescatarian")
+        //{
+        //    return p.getMeal();
+        //}
+    }
+    /*std::any displayMeal(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
     {
         Vegetarian v;
         Kids km;
@@ -154,4 +173,5 @@ namespace
 
         return results;
     }
+    */
 }

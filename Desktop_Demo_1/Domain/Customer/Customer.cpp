@@ -66,9 +66,11 @@ namespace  // anonymous (private) working area
     auto userCred = session.getCredentials();
     const int flightNum = std::stoi(args[0]); 
     const int seats = std::stoi(args[1]); 
-    const int meals = std::stoi(args[2]); 
-    const int bags = std::stoi(args[3]); 
-    std::string results = "Flight number " + args[0] + " will be booked with " + args[1] + " seats, " + args[2] + " meals, and " + args[3] + " bags. ";
+    const std::string meals = (args[2]);
+    const int bags = std::stoi(args[3]);
+    const std::string classType = args[4];
+
+    std::string results = "Flight number " + args[0] + " will be booked with " + args[1] + " seat(s), with " + displayMeal(meals) + ", " + args[3] + " bags. The ticket type is " + displayClass(classType);
 
     //std::cout << "Flight number " << flightNum << " will be booked with " << 
     //seats << " seats, " << meals << " meals, and " << bags << "bags.\n"; //Add later on
@@ -82,7 +84,7 @@ namespace  // anonymous (private) working area
         break;}
     }
     //std::vector<std::string> flightAndCost = { bookedFlight[9], bookedFlight[5]};
-    results.append("Total cost: " + bookedFlight[5] + "\nPayment is required by " + userCred.userEmail); //fix credentials
+    results.append("\nPayment is required by " + userCred.userEmail); //fix credentials
     return results;
   }
   

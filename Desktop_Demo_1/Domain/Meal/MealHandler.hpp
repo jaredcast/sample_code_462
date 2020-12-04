@@ -7,6 +7,7 @@
 #include <vector>
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 #include "Domain/Session/SessionHandler.hpp"
+#include "Domain/Meal/Meal.hpp"
 
 
 //interface
@@ -20,7 +21,8 @@ namespace Domain::Meal
     public:
 
         //All virtual functions, temporarily std::any. virtual function - 
-        virtual std::any displayMeal(Domain::Session::SessionHandler& session, const std::vector<std::string>& args) = 0;
+        //virtual std::any displayMeal(Domain::Session::SessionHandler& session, const std::vector<std::string>& args) = 0;
+        virtual std::string displayMeal(const std::string& meal) = 0;
 
         //Exceptions
         struct SessionException : std::runtime_error { using runtime_error::runtime_error; };

@@ -9,6 +9,8 @@
 //Got rid of session.hpp as requested in email 11/29/2020
 //An interface can include other interfaces at or below the same level, but never a concrete class.  "
 #include "Domain/Session/SessionHandler.hpp"
+#include "Domain/Ticket/TicketHandler.hpp"
+#include "Domain/Meal/MealHandler.hpp"
 
 
 //interface

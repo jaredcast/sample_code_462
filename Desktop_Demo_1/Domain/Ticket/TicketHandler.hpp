@@ -7,6 +7,7 @@
 #include <vector>
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
 #include "Domain/Session/SessionHandler.hpp"
+#include "Domain/Ticket/Ticket.hpp"
 
 
 //interface
@@ -20,7 +21,7 @@ namespace Domain::Ticket
     public:
 
         //All virtual functions, temporarily std::any. virtual function - 
-        virtual std::any displayTicket(Domain::Session::SessionHandler& session, const std::vector<std::string>& args) = 0;
+        virtual std::string displayClass(const std::string& ticket) = 0;
 
         //Exceptions
         struct SessionException : std::runtime_error { using runtime_error::runtime_error; };
