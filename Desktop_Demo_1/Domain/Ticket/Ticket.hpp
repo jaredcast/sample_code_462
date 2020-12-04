@@ -47,7 +47,7 @@ namespace
     class FirstClass : public Ticket
     {
     public:
-        FirstClass(const std::string& name = "first class")
+        FirstClass(const std::string& name = "First Class")
             : Ticket(this), _name(name)
         {}
 
@@ -58,7 +58,7 @@ namespace
 
         std::string price() const override
         {
-            return " for $500.";
+            return " [$500]";
         }
 
         virtual ~FirstClass()
@@ -71,7 +71,7 @@ namespace
     class BusinessClass : public Ticket
     {
     public:
-        BusinessClass(const std::string& name = "business class")
+        BusinessClass(const std::string& name = "Business Class")
             : Ticket(this), _name(name)
         {}
 
@@ -82,7 +82,7 @@ namespace
 
         std::string price() const override
         {
-            return " for $250.";
+            return " [$250]";
         }
 
         virtual ~BusinessClass()
@@ -106,7 +106,7 @@ namespace
 
         std::string price() const override
         {
-            return "$200";
+            return " for $200";
         }
 
         virtual ~EconomyClass()
@@ -138,25 +138,4 @@ namespace
         //    return ec.getTicket();
         //}
     }
-    // Passing by reference (vice value) is imperative!!  Pass by reference either by reference (&) or by pointer (*)
-    /*std::any displayTicket(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
-    {
-        FirstClass fc;
-        BusinessClass bc;
-        //EconomyClass ec;
-        std::string results = "";
-        const std::string classType = args[0];
-        if (classType == "First Class") {
-            results = fc.getTicket();
-        }
-        else if (classType == "Business Class") {
-            results = bc.getTicket();
-        }
-        //else if (classType == "Economy Class") {
-        //    results = ec.getTicket();
-        //}
-
-        return results;
-    }
-    */
 }

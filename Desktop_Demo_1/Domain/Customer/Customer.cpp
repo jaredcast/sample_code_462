@@ -22,6 +22,13 @@ namespace  // anonymous (private) working area
 
   std::vector<std::vector<std::string>> bookedFlights = {};
 
+  //std::vector<std::string> ticketList = {}; For now we are only keeping track of one ticket and one meal.
+  //std::vector<std::string> mealList = {};
+  std::string customerTicket = "";
+  std::string customerMeal = "";
+  int cSeat = 0;
+  int cBags = 0;
+
   //This is a temporary function to test our changes in the code - was having problems building, will remove once it is fixed
   std::any hello(Domain::Session::SessionHandler& session, const std::vector<std::string>& args) { //Change the header here too!!!! 12/1/2020
       std::string test = "This is a test function to rest the string!";
@@ -70,7 +77,7 @@ namespace  // anonymous (private) working area
     const int bags = std::stoi(args[3]);
     const std::string classType = args[4];
 
-    std::string results = "Flight number " + args[0] + " will be booked with " + args[1] + " seat(s), with " + displayMeal(meals) + ", " + args[3] + " bags. The ticket type is " + displayClass(classType) + ".";
+    std::string results = "Flight number " + args[0] + " will be booked with " + args[1] + " seat(s), with a " + displayMeal(meals) + ", " + args[3] + " bag(s). The ticket type is " + displayClass(classType) + ".";
 
     //std::cout << "Flight number " << flightNum << " will be booked with " << 
     //seats << " seats, " << meals << " meals, and " << bags << "bags.\n"; //Add later on
@@ -83,6 +90,14 @@ namespace  // anonymous (private) working area
         bookedFlights.push_back(flight);
         break;}
     }
+
+    //ticketList.push_back(classType); For now we are only keeping track of one ticket and one meal.
+    //mealList.push_back(meals);
+    customerMeal = meals;
+    customerTicket = classType;
+    cSeat = seats;
+    cBags = bags;
+
     //std::vector<std::string> flightAndCost = { bookedFlight[9], bookedFlight[5]};
     results.append("\nPayment is required by " + userCred.userEmail); //fix credentials
     return results;
@@ -101,7 +116,8 @@ namespace  // anonymous (private) working area
               results = "\n""Name: " + userCred.userEmail + "\n" + //fix credentials
                   "Departure Date: " + flight[2] + "      Departure From: " + flight[0] + "\n"
                   + "Destenation:  " + flight[1] + "             Stops: " + flight[4] + "\n"
-                  + "Number of Seats: 1        Numbers of Meals: 1        Number of Bags: 1";
+                  + "Number of Seats: " + std::to_string(cSeat) + "            Meal: " + displayMeal(customerMeal) + "      Number of Bags: " + std::to_string(cBags)
+                  + "      Ticket Type: " + displayClass(customerTicket);
               break;
           }
       }

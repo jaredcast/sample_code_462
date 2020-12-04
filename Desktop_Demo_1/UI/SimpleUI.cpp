@@ -10,9 +10,12 @@
 
 //#include "Domain/FlightApp/Flight.hpp"    // Include for now - will replace next increment
 #include "Domain/Session/SessionHandler.hpp"
+#include "Domain/Ticket/TicketHandler.hpp"
+#include "Domain/Meal/MealHandler.hpp"
 
 #include "TechnicalServices/Logging/LoggerHandler.hpp"
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
+#include "TechnicalServices/Payment/PaymentHandler.hpp"
 
 
 
@@ -135,8 +138,10 @@ namespace UI
         std::vector<std::string> parameters( 5 );
         std::cout << "Enter flight number: "; std::cin >> std::ws;  std::getline( std::cin, parameters[0] );
         std::cout << "How many seats?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[1] );
+        std::cout << "Food Menu:\n" + displayMeal("Vegetarian Meal") << '\n' << displayMeal("Kids Meal") << '\n';// << displayMeal("No Meal") << '\n';
         std::cout << "What kind of meal?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
         std::cout << "How many bags?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
+        std::cout << "Ticket Class Types:\n" + displayClass("First Class") << '\n' << displayClass("Business Class") << '\n';// << displayClass("Economy Class") << '\n';
         std::cout << "What class type flight?: "; std::cin >> std::ws;  std::getline(std::cin, parameters[4]);
 
         auto results = sessionControl->executeCommand( selectedCommand, parameters );

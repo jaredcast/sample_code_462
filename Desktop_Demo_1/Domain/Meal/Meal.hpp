@@ -48,7 +48,7 @@ namespace
     class Vegetarian : public Meal
     {
     public:
-        Vegetarian(const std::string& name = "a vegetarian meal")
+        Vegetarian(const std::string& name = "Vegetarian Meal")
             : Meal(this), _name(name)
         {}
 
@@ -59,12 +59,12 @@ namespace
 
         std::string foodType() const override
         {
-            return " that comes with a salad and ";
+            return " [salad and ";
         }
 
         std::string drinkType() const override
         {
-            return "water";
+            return "water]";
         }
 
         virtual ~Vegetarian()
@@ -77,7 +77,7 @@ namespace
     class Kids : public Meal
     {
     public:
-        Kids(const std::string& name = " a kids meal")
+        Kids(const std::string& name = "Kids Meal")
             : Meal(this), _name(name)
         {}
 
@@ -88,12 +88,12 @@ namespace
 
         std::string foodType() const override
         {
-            return " that comes with chicken nuggets and ";
+            return " [chicken nuggets and ";
         }
 
         std::string drinkType() const override
         {
-            return "orange juice";
+            return "orange juice]";
         }
 
         virtual ~Kids()
@@ -141,7 +141,7 @@ namespace
         Vegetarian v;
         Kids km;
         //Pescatarian p;
-        if (meal == "Vegetarian")
+        if (meal == "Vegetarian Meal")
         {
             return v.getMeal();
         }
