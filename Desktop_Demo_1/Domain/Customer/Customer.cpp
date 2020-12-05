@@ -25,6 +25,7 @@ namespace  // anonymous (private) working area
 
   //std::vector<std::string> ticketList = {}; For now we are only keeping track of one ticket and one meal.
   //std::vector<std::string> mealList = {};
+  std::vector<std::vector<Payment>> paymentList = {};
   std::string customerTicket = "";
   std::string customerMeal = "";
   int cSeat = 0;
@@ -138,17 +139,13 @@ namespace  // anonymous (private) working area
 
   //Pay with a credit card
   std::any payCreditCard(Domain::Session::SessionHandler& session, const std::vector <std::string > & args) {
-    PaymentFactory* theFactory = PaymentFactory::createFactory();
-    Payment* myNewPayment = theFactory->createPayment(args[5]);
-    myNewPayment->open();
-
     int flightNum = stoi(args[0]);
     std::vector<std::string> tempFlight = listOfFlights[flightNum];
     PaymentFactory* theFactory = PaymentFactory::createFactory();
-    //Payment* myNewPayment = theFactory->createPayment(parameters[5]);
     std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ". Total cost: " + args[4] + ". Paid for with: " + args[5];
     Payment* myNewPayment = theFactory->createPayment(args[5]);
     myNewPayment->open();
+    //paymentList.push_back(myNewPayment);
     return results;
   }
 
