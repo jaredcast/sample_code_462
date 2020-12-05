@@ -77,31 +77,42 @@ namespace  // anonymous (private) working area
     const std::string meals = (args[2]);
     const int bags = std::stoi(args[3]);
     const std::string classType = args[4];
-
-    std::string results = "Flight number " + args[0] + " will be booked with " + args[1] + " seat(s), with a " + displayMeal(meals) + ", " + args[3] + " bag(s). The ticket type is " + displayClass(classType) + ".";
-
-    //std::cout << "Flight number " << flightNum << " will be booked with " << 
-    //seats << " seats, " << meals << " meals, and " << bags << "bags.\n"; //Add later on
+    
+    std::string results;
 
     std::vector<std::string> bookedFlight;
+    bool foundFlight = false;
+
+    if (displayMeal(meals) == "Error") {
+      results = "Error, invalid meal requested.";
+      return results;
+    }
 
     for (auto flight : listOfFlights) {
       if (flight[9] == args[0]) { 
+        foundFlight = true;
         bookedFlight = flight;
         bookedFlights.push_back(flight);
         break;}
     }
 
-    //ticketList.push_back(classType); For now we are only keeping track of one ticket and one meal.
-    //mealList.push_back(meals);
-    customerMeal = meals;
-    customerTicket = classType;
-    cSeat = seats;
-    cBags = bags;
+    if (foundFlight) {
+       results = "Flight number " + args[0] + " will be booked with " + args[1] + " seat(s), with a " + displayMeal(meals) + ", " + args[3] + " bag(s). The ticket type is " + displayClass(classType) + ".";
+       //ticketList.push_back(classType); For now we are only keeping track of one ticket and one meal.
+      //mealList.push_back(meals);
+      customerMeal = meals;
+      customerTicket = classType;
+      cSeat = seats;
+      cBags = bags;
 
-    //std::vector<std::string> flightAndCost = { bookedFlight[9], bookedFlight[5]};
-    results.append("\nPayment is required by " + userCred.userEmail); //fix credentials
-    return results;
+      results.append("\nPayment is required by " + userCred.userEmail); //fix credentials
+      return results;
+    }
+    else {
+      results = "Error, no flights found with flight number " + args[0];
+      return results;
+    }
+    
   }
   
   //Shows the ticket the customer has purchased - fix later   
@@ -127,6 +138,10 @@ namespace  // anonymous (private) working area
 
   //Pay with a credit card
   std::any payCreditCard(Domain::Session::SessionHandler& session, const std::vector <std::string > & args) {
+    PaymentFactory* theFactory = PaymentFactory::createFactory();
+    Payment* myNewPayment = theFactory->createPayment(args[5]);
+    myNewPayment->open();
+
     int flightNum = stoi(args[0]);
     std::vector<std::string> tempFlight = listOfFlights[flightNum];
     std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ". Total cost: " + args[4];

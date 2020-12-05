@@ -149,7 +149,7 @@ namespace
         {
             return km.getMeal();
         }
-        else return meal;
+        else return "Error";
         //else if (meal == "Pescatarian")
         //{
         //    return p.getMeal();
