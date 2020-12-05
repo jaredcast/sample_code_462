@@ -32,52 +32,52 @@ namespace {
     {}
 
     // Visa Payment Concrete Product
-    class Visa : public Payment
+    class Amazon : public Payment
     {
     public:
-        Visa(std::string type = "Visa")
+        Amazon(std::string type = "Amazon")
             : Payment(type)
         {
-            std::cout << "Created Visa payment number " << (_paymentID = ++_counter) << '\n';
+            std::cout << "Created Amazon Credit Card payment number " << (_paymentID = ++_counter) << '\n';
         }
 
         void open() override
         {}
 
-        ~Visa() override
+        ~Amazon() override
         {
-            std::cout << "Destroyed Visa payment number " << _paymentID << '\n';
+            std::cout << "Destroyed Amazon Credit Card payment number " << _paymentID << '\n';
         }
 
     private:
         static long unsigned _counter; // class attribute to count the number of wooden door made
         long unsigned        _paymentID = 0;
     };
-    long unsigned Visa::_counter = 0; // Allocate storage for class attribute
+    long unsigned Amazon::_counter = 0; // Allocate storage for class attribute
 
     // Credit Payment Concrete Product
-    class Credit : public Payment
+    class Apple : public Payment
     {
     public:
-        Credit(std::string type = "Credit")
+        Apple(std::string type = "Apple")
             : Payment(type)
         {
-            std::cout << "Created Credit payment number " << (_paymentID = ++_counter) << '\n';
+            std::cout << "Created Apple Pay Credit Card payment number " << (_paymentID = ++_counter) << '\n';
         }
 
         void open() override
         {}
 
-        ~Credit() override
+        ~Apple() override
         {
-            std::cout << "Destroyed Credit payment number " << _paymentID << '\n';
+            std::cout << "Destroyed Apple Pay Credit Credit payment number " << _paymentID << '\n';
         }
 
     private:
         static long unsigned _counter; // class attribute to count the number of wooden door made
         long unsigned        _paymentID = 0;
     };
-    long unsigned Credit::_counter = 0; // Allocate storage for class attribute
+    long unsigned Apple::_counter = 0; // Allocate storage for class attribute
 
     /*
     // Credit Payment Concrete Product
@@ -87,7 +87,7 @@ namespace {
         MasterCard(std::string type = "Master Card")
             : Payment(type)
         {
-            std::cout << "Created Master Card payment number " << (_paymentID = ++_counter) << '\n';
+            std::cout << "Created Master Card Credi payment number " << (_paymentID = ++_counter) << '\n';
         }
 
         void open() override
@@ -95,7 +95,7 @@ namespace {
 
         ~MasterCard() override
         {
-            std::cout << "Destroyed Master Card payment number " << _paymentID << '\n';
+            std::cout << "Destroyed Master Card Credit payment number " << _paymentID << '\n';
         }
 
     private:
@@ -119,20 +119,20 @@ namespace {
     };
 
     // Visa Concrete Factory
-    struct VisaFactory : PaymentFactory
+    struct AmazonFactory : PaymentFactory
     {
-        Visa* createPayment(std::string type) override
+        Amazon* createPayment(std::string type) override
         {
-            return new Visa(type);
+            return new Amazon(type);
         }
     };
 
     // Credit Concrete Factory
-    struct CreditFactory : PaymentFactory
+    struct AppleFactory : PaymentFactory
     {
-        Credit* createPayment(std::string type) override
+        Apple* createPayment(std::string type) override
         {
-            return new Credit(type);
+            return new Apple(type);
         }
     };
 
@@ -153,10 +153,10 @@ namespace {
         // pretend a call to get the desired type of door from the configuration
         // data returned "Plastic".  In particular, note that no data is passed into
         // the creatFactory function;
-        std::string factoryPreference = "Visa";
+        std::string factoryPreference = "Amazon";
 
-        if (factoryPreference == "Visa") return new VisaFactory();
-        else if (factoryPreference == "Credit")  return new CreditFactory;
+        if (factoryPreference == "Amazon") return new AmazonFactory();
+        else if (factoryPreference == "Apple")  return new AppleFactory;
         //else if (factoryPreference == "Master Card")  return new MasterCardFactory;
         else
         {

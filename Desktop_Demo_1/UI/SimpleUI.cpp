@@ -8,14 +8,12 @@
 #include <string>      // string, getline()
 #include <vector>
 
-//#include "Domain/FlightApp/Flight.hpp"    // Include for now - will replace next increment
 #include "Domain/Session/SessionHandler.hpp"
 #include "Domain/Ticket/TicketHandler.hpp"
 #include "Domain/Meal/MealHandler.hpp"
 
 #include "TechnicalServices/Logging/LoggerHandler.hpp"
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
-#include "TechnicalServices/Payment/PaymentHandler.hpp"
 
 
 
@@ -163,11 +161,7 @@ namespace UI
         std::cout << "Enter security pin: "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
         std::cout << "Enter billing address: "; std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
         std::cout << "Enter cost: "; std::cin >> std::ws;  std::getline( std::cin, parameters[4] );
-        std::cout << "Enter payment card tpye: "; std::cin >> std::ws;  std::getline(std::cin, parameters[5]);
-
-        PaymentFactory* theFactory = PaymentFactory::createFactory();
-        Payment* myNewPayment = theFactory->createPayment(parameters[5]);
-        myNewPayment->open();
+        std::cout << "Enter payment card type: "; std::cin >> std::ws;  std::getline(std::cin, parameters[5]);
 
         auto results = sessionControl->executeCommand( selectedCommand, parameters );
         if( results.has_value() ) _logger << "Received reply: \"" + std::any_cast<const std::string &>( results ) + '"';
