@@ -28,7 +28,7 @@ namespace TechnicalServices::Payment
         struct   BadCommand : SessionException { using SessionException::SessionException; };
 
         // Object Factory returning a specialized object specific to the specified user and role
-        static std::unique_ptr<PaymentHandler> createSession(const UserCredentials& credentials);
+        static std::unique_ptr<PaymentHandler> createPayment(const UserCredentials& credentials);
 
         //Operations
         virtual std::vector<std::string> getCommands() = 0; // retrieves the list of actions (commands)

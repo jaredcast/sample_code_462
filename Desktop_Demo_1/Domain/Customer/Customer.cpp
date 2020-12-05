@@ -144,7 +144,11 @@ namespace  // anonymous (private) working area
 
     int flightNum = stoi(args[0]);
     std::vector<std::string> tempFlight = listOfFlights[flightNum];
-    std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ". Total cost: " + args[4];
+    PaymentFactory* theFactory = PaymentFactory::createFactory();
+    //Payment* myNewPayment = theFactory->createPayment(parameters[5]);
+    std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ". Total cost: " + args[4] + ". Paid for with: " + args[5];
+    Payment* myNewPayment = theFactory->createPayment(args[5]);
+    myNewPayment->open();
     return results;
   }
 
