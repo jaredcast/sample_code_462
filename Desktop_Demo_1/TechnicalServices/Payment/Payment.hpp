@@ -1,7 +1,7 @@
 #pragma once
 //#include "Domain/Session/SessionBase.hpp"
-#include "TechnicalServices/Payment/PaymentHandler.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
+#include "TechnicalServices/Payment/Payment.cpp"
 #include <string>
 #include <new>
 #include <iostream>
@@ -12,141 +12,160 @@
 **          PAYMENTS
 *******************************************************************************/
 // Payment Abstract Product Interface
-class Payment
-{
-public:
-    Payment(std::string type)
-        : _type(type)
+namespace {
+    class Payment
+    {
+    public:
+        Payment(std::string type)
+            : _type(type)
+        {}
+
+        virtual void open() = 0;
+
+        virtual ~Payment() = 0; // force the class to be abstract
+
+    protected:
+        std::string _type;
+    };
+
+    inline Payment::~Payment()
     {}
 
-    virtual void open() = 0;
-
-    virtual ~Payment() = 0; // force the class to be abstract
-
-protected:
-    std::string _type;
-};
-
-inline Payment::~Payment()
-{}
-
-// Visa Payment Concrete Product
-class Visa : public Payment
-{
-public:
-    Visa(std::string type = "Visa")
-        : Payment(type)
+    // Visa Payment Concrete Product
+    class Visa : public Payment
     {
-        std::cout << "Created visa payment number " << (_paymentID = ++_counter) << '\n';
-    }
+    public:
+        Visa(std::string type = "Visa")
+            : Payment(type)
+        {
+            std::cout << "Created Visa payment number " << (_paymentID = ++_counter) << '\n';
+        }
 
-    void open() override
-    {}
+        void open() override
+        {}
 
-    ~Visa() override
+        ~Visa() override
+        {
+            std::cout << "Destroyed Visa payment number " << _paymentID << '\n';
+        }
+
+    private:
+        static long unsigned _counter; // class attribute to count the number of wooden door made
+        long unsigned        _paymentID = 0;
+    };
+    long unsigned Visa::_counter = 0; // Allocate storage for class attribute
+
+    // Credit Payment Concrete Product
+    class Credit : public Payment
     {
-        std::cout << "Destroyed visa payment number " << _paymentID << '\n';
-    }
+    public:
+        Credit(std::string type = "Credit")
+            : Payment(type)
+        {
+            std::cout << "Created Credit payment number " << (_paymentID = ++_counter) << '\n';
+        }
 
-private:
-    static long unsigned _counter; // class attribute to count the number of wooden door made
-    long unsigned        _paymentID = 0;
-};
-long unsigned Visa::_counter = 0; // Allocate storage for class attribute
+        void open() override
+        {}
 
-// Credit Payment Concrete Product
-class Credit : public Payment
-{
-public:
-    Credit(std::string type = "Credit")
-        : Payment(type)
+        ~Credit() override
+        {
+            std::cout << "Destroyed Credit payment number " << _paymentID << '\n';
+        }
+
+    private:
+        static long unsigned _counter; // class attribute to count the number of wooden door made
+        long unsigned        _paymentID = 0;
+    };
+    long unsigned Credit::_counter = 0; // Allocate storage for class attribute
+
+    /*
+    // Credit Payment Concrete Product
+    class MasterCard : public Payment
     {
-        std::cout << "Created credit payment number " << (_paymentID = ++_counter) << '\n';
-    }
+    public:
+        MasterCard(std::string type = "Master Card")
+            : Payment(type)
+        {
+            std::cout << "Created Master Card payment number " << (_paymentID = ++_counter) << '\n';
+        }
 
-    void open() override
-    {}
+        void open() override
+        {}
 
-    ~Credit() override
+        ~MasterCard() override
+        {
+            std::cout << "Destroyed Master Card payment number " << _paymentID << '\n';
+        }
+
+    private:
+        static long unsigned _counter; // class attribute to count the number of wooden door made
+        long unsigned        _paymentID = 0;
+    };
+    long unsigned MasterCard::_counter = 0; // Allocate storage for class attribute
+    */
+
+    /*******************************************************************************
+    **          PAYMENT FACTORIES
+    *******************************************************************************/
+    // Payment Abstract Factory Interface
+    struct PaymentFactory
     {
-        std::cout << "Destroyed credit payment number " << _paymentID << '\n';
-    }
+        // Must be static
+        static PaymentFactory* createFactory();
 
-private:
-    static long unsigned _counter; // class attribute to count the number of wooden door made
-    long unsigned        _paymentID = 0;
-};
-long unsigned Credit::_counter = 0; // Allocate storage for class attribute
+        // All Payment Factories have these functions
+        virtual Payment* createPayment(std::string type) = 0;
+    };
 
-/*
-// Credit Payment Concrete Product
-class MasterCard : public Payment
-{
-public:
-    MasterCard(std::string type = "Master Card")
-        : Payment(type)
+    // Visa Concrete Factory
+    struct VisaFactory : PaymentFactory
     {
-        std::cout << "Created Master Card payment number " << (_paymentID = ++_counter) << '\n';
-    }
+        Visa* createPayment(std::string type) override
+        {
+            return new Visa(type);
+        }
+    };
 
-    void open() override
-    {}
-
-    ~MasterCard() override
+    // Credit Concrete Factory
+    struct CreditFactory : PaymentFactory
     {
-        std::cout << "Destroyed Master Card payment number " << _paymentID << '\n';
-    }
+        Credit* createPayment(std::string type) override
+        {
+            return new Credit(type);
+        }
+    };
 
-private:
-    static long unsigned _counter; // class attribute to count the number of wooden door made
-    long unsigned        _paymentID = 0;
-};
-long unsigned MasterCard::_counter = 0; // Allocate storage for class attribute
-*/
-
-/*******************************************************************************
-**          PAYMENT FACTORIES
-*******************************************************************************/
-// Payment Abstract Factory Interface
-struct PaymentFactory
-{
-    // Must be static
-    static PaymentFactory* createFactory();
-
-    // All Door Factories have these functions
-    virtual Payment* createPayment(std::string type) = 0;
-};
-
-// Visa Concrete Factory
-struct VisaFactory : PaymentFactory
-{
-    Visa* createPayment(std::string type) override
+    /*
+    // Master Card Concrete Factory
+    struct MasterCardFactory : PaymentFactory
     {
-        return new Visa(type);
-    }
-};
+        MasterCard* createPayment(std::string type) override
+        {
+            return new MasterCard(type);
+        }
+    };
+    */
 
-// Credit Concrete Factory
-struct CreditFactory : PaymentFactory
-{
-    Credit* createPayment(std::string type) override
+    PaymentFactory * PaymentFactory::createFactory()
     {
-        return new Credit(type);
-    }
-};
+        // Read from configuration data what type of doors we want to create.  Let's
+        // pretend a call to get the desired type of door from the configuration
+        // data returned "Plastic".  In particular, note that no data is passed into
+        // the creatFactory function;
+        std::string factoryPreference = "Visa";
 
-/*
-// Master Card Concrete Factory
-struct MasterCardFactory : PaymentFactory
-{
-    MasterCard* createPayment(std::string type) override
-    {
-        return new MasterCard(type);
+        if (factoryPreference == "Visa") return new VisaFactory();
+        else if (factoryPreference == "Credit")  return new CreditFactory;
+        //else if (factoryPreference == "Master Card")  return new MasterCardFactory;
+        else
+        {
+            // error - Preference not support.
+            throw std::domain_error("Unsupported factory preference encountered: " + factoryPreference);
+        }
     }
-};
-*/
-
-std::any displayPaymentType(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
+}
+/*std::any displayPaymentType(Domain::Session::SessionHandler& session, const std::vector<std::string>& args)
 {
     Visa visa;
     Credit credit;
@@ -164,7 +183,7 @@ std::any displayPaymentType(Domain::Session::SessionHandler& session, const std:
     //}
     results = "\nEntered " + args[0] + " payment type.";
     return results;
-}
+}*/
 
 
 

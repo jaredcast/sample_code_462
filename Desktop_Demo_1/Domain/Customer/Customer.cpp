@@ -2,6 +2,7 @@
 #include "Domain/Customer/CustomerHandler.hpp"
 #include "Domain/Session/SessionBase.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
+#include "TechnicalServices/Payment/PaymentHandler.hpp"
 #include <string>
 #include <any>
 #include <vector>

@@ -6,11 +6,12 @@
 #include <string>
 #include <vector>
 #include "TechnicalServices/Persistence/PersistenceHandler.hpp"
+#include "TechnicalServices/Payment/Payment.hpp"
 #include "Domain/Session/SessionHandler.hpp"
 
 
 //interface
-namespace Domain::Payment
+namespace TechnicalServices::Payment
 {
 
     using TechnicalServices::Persistence::UserCredentials;
@@ -20,7 +21,7 @@ namespace Domain::Payment
     public:
 
         //All virtual functions, temporarily std::any. virtual function - 
-        virtual std::any displayPaymentType(Domain::Session::SessionHandler& session, const std::vector<std::string>& args) = 0;
+        //virtual std::any displayPaymentType(Domain::Session::SessionHandler& session, const std::vector<std::string>& args) = 0;
 
         //Exceptions
         struct SessionException : std::runtime_error { using runtime_error::runtime_error; };
