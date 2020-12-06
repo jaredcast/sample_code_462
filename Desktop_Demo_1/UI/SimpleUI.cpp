@@ -141,7 +141,7 @@ namespace UI
         std::cout << "What kind of meal?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[2] );
         std::cout << "How many bags?: "; std::cin >> std::ws;  std::getline( std::cin, parameters[3] );
         //std::cout << "Ticket Class Types:\n" + displayClass("First Class") << '\n' << displayClass("Business Class") << '\n';// << displayClass("Economy Class") << '\n';
-        std::cout << "Ticket Class Types:\n" << "First Class | Business Class\n";
+        std::cout << "Ticket Class Types:\n" << "First Class | Business Class\n"; //problems with this here
         std::cout << "What class type flight?: "; std::cin >> std::ws;  std::getline(std::cin, parameters[4]);
 
         auto results = sessionControl->executeCommand( selectedCommand, parameters );

@@ -48,7 +48,7 @@ namespace
     class Vegetarian : public Meal
     {
     public:
-        Vegetarian(const std::string& name = "Vegetarian Meal")
+        Vegetarian(const std::string& name = "Vegetarian")
             : Meal(this), _name(name)
         {}
 
@@ -77,7 +77,7 @@ namespace
     class Kids : public Meal
     {
     public:
-        Kids(const std::string& name = "Kids Meal")
+        Kids(const std::string& name = "Kids")
             : Meal(this), _name(name)
         {}
 
@@ -141,11 +141,11 @@ namespace
         Vegetarian v;
         Kids km;
         //Pescatarian p;
-        if (meal == "Vegetarian Meal")
+        if (meal == "Vegetarian")
         {
             return v.getMeal();
         }
-        else if (meal == "Kids Meal")
+        else if (meal == "Kids")
         {
             return km.getMeal();
         }
