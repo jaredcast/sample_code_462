@@ -1,5 +1,7 @@
 #include "Domain/Customer/Customer.hpp"
 #include "Domain/Customer/CustomerHandler.hpp"
+#include "Domain/Ticket/TicketHandler.hpp"
+#include "Domain/Meal/MealHandler.hpp"
 #include "Domain/Session/SessionBase.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
 #include "TechnicalServices/Payment/PaymentHandler.hpp"
@@ -23,7 +25,7 @@ namespace  // anonymous (private) working area
 
   std::vector<std::vector<std::string>> bookedFlights = {};
 
-  //std::vector<std::string> ticketList = {}; For now we are only keeping track of one ticket and one meal.
+  std::vector<std::vector<Ticket>> ticketList = {};
   //std::vector<std::string> mealList = {};
   std::vector<std::vector<Payment>> paymentList = {};
   std::string customerTicket = "";
