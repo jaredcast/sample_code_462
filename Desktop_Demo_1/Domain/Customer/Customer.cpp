@@ -57,7 +57,8 @@ namespace  // anonymous (private) working area
       if (oriCheck == true && destinationCheck == true && deptCheck == true && returnCheck == true) { matchFlights.push_back(flight); }
     }
     std::cout << "\nList of flights matching your search filters: \n";
-    if (matchFlights.size() == 0) { std::cout << "None matched your parameters.\n";}
+    if (matchFlights.size() == 0) { results.append( "None matched your parameters.\n");
+                                    return results;}
     for (auto flight : matchFlights) {
       std::cout << "Flight #" << flight[9] << " ";
       for (int x = 0; x < flight.size(); x++) {
