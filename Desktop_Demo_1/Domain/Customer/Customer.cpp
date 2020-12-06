@@ -140,7 +140,7 @@ namespace  // anonymous (private) working area
   //Pay with a credit card
   std::any payCreditCard(Domain::Session::SessionHandler& session, const std::vector <std::string > & args) {
     int flightNum = stoi(args[0]);
-    int cardNum = stoi(args[1]);
+    std::string cardNum = args[1];
     int pin = stoi(args[2]);
     std::string billAdd = args[3];
     int cost = stoi(args[4]);

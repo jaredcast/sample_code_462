@@ -16,7 +16,7 @@ namespace {
     class Payment
     {
     public:
-        Payment(int cardNum, int pin, std::string billAdd, int cost, std::string type)
+        Payment(std::string cardNum, int pin, std::string billAdd, int cost, std::string type)
             : _cardNum(cardNum), _pin(pin), _billAdd(billAdd), _cost(cost), _type(type)
         {}
 
@@ -25,7 +25,7 @@ namespace {
         virtual ~Payment() = 0; // force the class to be abstract
 
     protected:
-        int _cardNum;
+        std::string _cardNum;
         int _pin;
         std::string _billAdd;
         int _cost;
@@ -39,7 +39,7 @@ namespace {
     class Amazon : public Payment
     {
     public:
-        Amazon(int cardNum, int pin, std::string billAdd, int cost, std::string type = "Amazon")
+        Amazon(std::string cardNum, int pin, std::string billAdd, int cost, std::string type = "Amazon")
             : Payment(cardNum, pin, billAdd, cost, type)
         {
             std::cout << "Created Amazon Credit Card payment number " << (_paymentID = ++_counter) << '\n';
@@ -63,7 +63,7 @@ namespace {
     class Apple : public Payment
     {
     public:
-        Apple(int cardNum, int pin, std::string billAdd, int cost, std::string type = "Apple")
+        Apple(std::string cardNum, int pin, std::string billAdd, int cost, std::string type = "Apple")
             : Payment(cardNum, pin, billAdd, cost, type)
         {
             std::cout << "Created Apple Pay Credit Card payment number " << (_paymentID = ++_counter) << '\n';
@@ -119,13 +119,13 @@ namespace {
         static PaymentFactory* createFactory(std::string factoryPreference);
 
         // All Payment Factories have these functions
-        virtual Payment* createPayment(int cardNum, int pin, std::string billAdd, int cost, std::string type) = 0;
+        virtual Payment* createPayment(std::string cardNum, int pin, std::string billAdd, int cost, std::string type) = 0;
     };
 
     // Visa Concrete Factory
     struct AmazonFactory : PaymentFactory
     {
-        Amazon* createPayment(int cardNum, int pin, std::string billAdd, int cost, std::string type) override
+        Amazon* createPayment(std::string cardNum, int pin, std::string billAdd, int cost, std::string type) override
         {
             return new Amazon(cardNum, pin, billAdd, cost, type);
         }
@@ -134,7 +134,7 @@ namespace {
     // Credit Concrete Factory
     struct AppleFactory : PaymentFactory
     {
-        Apple* createPayment(int cardNum, int pin, std::string billAdd, int cost, std::string type) override
+        Apple* createPayment(std::string cardNum, int pin, std::string billAdd, int cost, std::string type) override
         {
             return new Apple(cardNum, pin, billAdd, cost, type);
         }
