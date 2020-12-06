@@ -16,8 +16,8 @@ namespace {
     class Payment
     {
     public:
-        Payment(std::string type)
-            : _type(type)
+        Payment(int cardNum, int pin, std::string billAdd, int cost, std::string type)
+            : _cardNum(cardNum), _pin(pin), _billAdd(billAdd), _cost(cost), _type(type)
         {}
 
         virtual void open() = 0;
@@ -25,6 +25,10 @@ namespace {
         virtual ~Payment() = 0; // force the class to be abstract
 
     protected:
+        int _cardNum;
+        int _pin;
+        std::string _billAdd;
+        int _cost;
         std::string _type;
     };
 
@@ -35,8 +39,8 @@ namespace {
     class Amazon : public Payment
     {
     public:
-        Amazon(std::string type = "Amazon")
-            : Payment(type)
+        Amazon(int cardNum, int pin, std::string billAdd, int cost, std::string type = "Amazon")
+            : Payment(cardNum, pin, billAdd, cost, type)
         {
             std::cout << "Created Amazon Credit Card payment number " << (_paymentID = ++_counter) << '\n';
         }
@@ -59,8 +63,8 @@ namespace {
     class Apple : public Payment
     {
     public:
-        Apple(std::string type = "Apple")
-            : Payment(type)
+        Apple(int cardNum, int pin, std::string billAdd, int cost, std::string type = "Apple")
+            : Payment(cardNum, pin, billAdd, cost, type)
         {
             std::cout << "Created Apple Pay Credit Card payment number " << (_paymentID = ++_counter) << '\n';
         }
@@ -112,27 +116,27 @@ namespace {
     struct PaymentFactory
     {
         // Must be static
-        static PaymentFactory* createFactory();
+        static PaymentFactory* createFactory(std::string factoryPreference);
 
         // All Payment Factories have these functions
-        virtual Payment* createPayment(std::string type) = 0;
+        virtual Payment* createPayment(int cardNum, int pin, std::string billAdd, int cost, std::string type) = 0;
     };
 
     // Visa Concrete Factory
     struct AmazonFactory : PaymentFactory
     {
-        Amazon* createPayment(std::string type) override
+        Amazon* createPayment(int cardNum, int pin, std::string billAdd, int cost, std::string type) override
         {
-            return new Amazon(type);
+            return new Amazon(cardNum, pin, billAdd, cost, type);
         }
     };
 
     // Credit Concrete Factory
     struct AppleFactory : PaymentFactory
     {
-        Apple* createPayment(std::string type) override
+        Apple* createPayment(int cardNum, int pin, std::string billAdd, int cost, std::string type) override
         {
-            return new Apple(type);
+            return new Apple(cardNum, pin, billAdd, cost, type);
         }
     };
 
@@ -147,16 +151,16 @@ namespace {
     };
     */
 
-    PaymentFactory * PaymentFactory::createFactory()
+    PaymentFactory * PaymentFactory::createFactory(std::string factoryPreference)
     {
         // Read from configuration data what type of doors we want to create.  Let's
         // pretend a call to get the desired type of door from the configuration
         // data returned "Plastic".  In particular, note that no data is passed into
         // the creatFactory function;
-        std::string factoryPreference = "Amazon";
+        //std::string factoryPreference = "Amazon";
 
         if (factoryPreference == "Amazon") return new AmazonFactory();
-        else if (factoryPreference == "Apple")  return new AppleFactory;
+        else if (factoryPreference == "Apple")  return new AppleFactory();
         //else if (factoryPreference == "Master Card")  return new MasterCardFactory;
         else
         {

@@ -140,12 +140,19 @@ namespace  // anonymous (private) working area
   //Pay with a credit card
   std::any payCreditCard(Domain::Session::SessionHandler& session, const std::vector <std::string > & args) {
     int flightNum = stoi(args[0]);
+    int cardNum = stoi(args[1]);
+    int pin = stoi(args[2]);
+    std::string billAdd = args[3];
+    int cost = stoi(args[4]);
+    std::string cardType = args[5];
+
     std::vector<std::string> tempFlight = listOfFlights[flightNum];
-    PaymentFactory* theFactory = PaymentFactory::createFactory();
-    std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ". Total cost: " + args[4] + ". Paid for with: " + args[5];
-    Payment* myNewPayment = theFactory->createPayment(args[5]);
-    myNewPayment->open();
+    PaymentFactory* theFactory = PaymentFactory::createFactory(args[5]);
+    Payment* myNewPayment = theFactory->createPayment(cardNum, pin, billAdd, cost, cardType); 
+    myNewPayment->open(); //In domain layer, call createPayment factory function inside paymentHandler interface/ like UI layer calling createSession
     //paymentList.push_back(myNewPayment);
+    std::string results = "Flight number " + args[0] + " has been paid for by card number " + args[1] + ". Total cost: " + args[4] + ". Paid for with: " + args[5];
+
     return results;
   }
 
