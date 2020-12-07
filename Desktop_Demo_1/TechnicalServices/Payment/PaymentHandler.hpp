@@ -31,8 +31,8 @@ namespace TechnicalServices::Payment
         static std::unique_ptr<PaymentHandler> createPayment(const UserCredentials& credentials);
 
         //Operations
-        virtual std::vector<std::string> getCommands() = 0; // retrieves the list of actions (commands)
-        virtual std::any                 executeCommand(const std::string& command, const std::vector<std::string>& args) = 0; // Throws BadCommand
+        //virtual std::vector<std::string> getCommands() = 0; // retrieves the list of actions (commands)
+        //virtual std::any                 executeCommand(const std::string& command, const std::vector<std::string>& args) = 0; // Throws BadCommand
 
 
         // Destructor

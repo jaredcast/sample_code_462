@@ -36,11 +36,13 @@ namespace UI
 
       auto session  = Domain::Session::SessionHandler::createSession( {"jared@csuf.com", "password", {"Customer"}} );
       auto commands = session->getCommands();
-      auto results  = session->executeCommand( "Search Flight", {"Los Angeles", "Paris", "12-01-2019", "12-16-2019"} );
+      auto results  = session->executeCommand( "Search Flight", {"Los Angeles", "Paris", "12/01/2019", "12/16/2019"} );
+      results = session->executeCommand("Book Flight", {"1", "1", "Vegetarian", "2", "First Class"});
+      results = session->executeCommand("Pay with Credit Card", {"1", "1234567812345678", "1234", "Tuffy Ln", "500", "Apple"});
       //session->singOff();
-
-      _logger << "Completed scenario 1";
-      system( "PAUSE" ); //pauses the automatic scenario
+      session ->logOff();
+      _logger << "!!!!!!!!!!!!!!!!!! Completed scenario 1 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+      //system( "PAUSE" ); //pauses the automatic scenario
     }
   }
 }    // namespace UI

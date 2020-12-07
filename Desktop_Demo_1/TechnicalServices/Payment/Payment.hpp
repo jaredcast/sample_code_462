@@ -1,7 +1,7 @@
 #pragma once
 //#include "Domain/Session/SessionBase.hpp"
 #include "TechnicalServices/Persistence/SimpleDB.hpp"
-#include "TechnicalServices/Payment/Payment.cpp"
+//#include "TechnicalServices/Payment/Payment.cpp"
 #include <string>
 #include <new>
 #include <iostream>
@@ -188,29 +188,3 @@ namespace {
     results = "\nEntered " + args[0] + " payment type.";
     return results;
 }*/
-
-
-
-
-/*******************************************************************************
-**          Clients
-*******************************************************************************/
-/*
-int main()
-{
-    // I'd like a new door, please.  Let's ask for one and let the system's configuration data 
-    // pick the material.
-    // Note the assignment of a pointer-to-concrete class to a pointer-to-interface class
-
-    DoorFactory* theFactory = DoorFactory::createFactory();
-
-    // Surprise!  I got a new door but never said what kind I wanted
-    Door* myNewDoor = theFactory->createDoor(12, 1.5, 3.0);
-
-    myNewDoor->open();
-
-    // Bookkeeping to be done - could avoid if we used smart pointers!
-    delete myNewDoor;
-    delete theFactory;
-}
-*/
