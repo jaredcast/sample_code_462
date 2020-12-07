@@ -27,7 +27,7 @@ namespace Domain::Customer
         std::any bookFlight(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) override; //respond with flight number, and cost
         std::any payCreditCard(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) override; //flight info, receipt, ticket, email etc
         std::any showTickets(Domain::Session::SessionHandler& session, const std::vector <std::string > & args) override;
-        std::any hello(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) override;
+        //std::any hello(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) override;
 
 
         // Dispatched functions need access to these attributes, so for now make these public instead of protected

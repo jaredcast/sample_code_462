@@ -35,7 +35,7 @@ namespace Domain::Customer //Add back the customer handler part here???  Domain:
       virtual std::any bookFlight(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) = 0; //respond with flight number, and cost
       virtual std::any showTickets(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) = 0;
       virtual std::any payCreditCard(Domain::Session::SessionHandler& session, const std::vector <std::string > & args) = 0;
-      virtual std::any hello(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) = 0;
+      //virtual std::any hello(Domain::Session::SessionHandler & session, const std::vector<std::string> & args) = 0;
 
 
       //Exceptions
