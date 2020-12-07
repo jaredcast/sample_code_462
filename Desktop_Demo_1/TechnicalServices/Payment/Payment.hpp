@@ -41,7 +41,7 @@ namespace {
         Amazon(std::string cardNum, int pin, std::string billAdd, int cost, std::string type = "Amazon")
             : Payment(cardNum, pin, billAdd, cost, type)
         {
-            std::cout << "Created Amazon Credit Card payment number " << (_paymentID = ++_counter) << '\n';
+            std::cout << "Created Amazon Credit Card payment number'\n'";
         }
 
         void open() override
@@ -49,14 +49,9 @@ namespace {
 
         ~Amazon() override
         {
-            std::cout << "Destroyed Amazon Credit Card payment number " << _paymentID << '\n';
+            std::cout << "Destroyed Amazon Credit Card payment\n";
         }
-
-    private:
-        static long unsigned _counter; // class attribute to count the number of wooden door made
-        long unsigned        _paymentID = 0;
     };
-    long unsigned Amazon::_counter = 0; // Allocate storage for class attribute
 
     // APPLE--------------------------------------------------------------------------------------------------------------------------
     class Apple : public Payment
@@ -65,7 +60,7 @@ namespace {
         Apple(std::string cardNum, int pin, std::string billAdd, int cost, std::string type = "Apple")
             : Payment(cardNum, pin, billAdd, cost, type)
         {
-            std::cout << "Created Apple Pay Credit Card payment number " << (_paymentID = ++_counter) << '\n';
+            std::cout << "Created Apple Pay Credit Card payment\n";
         }
 
         void open() override
@@ -73,15 +68,9 @@ namespace {
 
         ~Apple() override
         {
-            std::cout << "Destroyed Apple Pay Credit Credit payment number " << _paymentID << '\n';
+            std::cout << "Destroyed Apple Pay Credit Card Payment\n";
         }
-
-    private:
-        static long unsigned _counter; // class attribute to count the number of wooden door made
-        long unsigned        _paymentID = 0;
     };
-    long unsigned Apple::_counter = 0; // Allocate storage for class attribute
-
     /*
     //--------------------------------------------------------------------------------------------------------------------------
     // Credit Payment Concrete Product
@@ -91,7 +80,7 @@ namespace {
         MasterCard(std::string type = "Master Card")
             : Payment(type)
         {
-            std::cout << "Created Master Card Credi payment number " << (_paymentID = ++_counter) << '\n';
+            std::cout << "Created Master Card Credi payment\n";
         }
 
         void open() override
@@ -99,12 +88,8 @@ namespace {
 
         ~MasterCard() override
         {
-            std::cout << "Destroyed Master Card Credit payment number " << _paymentID << '\n';
+            std::cout << "Destroyed Master Card Credit Card Payment\n";
         }
-
-    private:
-        static long unsigned _counter; // class attribute to count the number of wooden door made
-        long unsigned        _paymentID = 0;
     };
     long unsigned MasterCard::_counter = 0; // Allocate storage for class attribute
     */

@@ -19,6 +19,8 @@ namespace
         virtual std::string foodType() const = 0;
         virtual std::string drinkType()       const = 0;
 
+        std::string _name = "";
+
         static std::set<Meal*>& entirePopulation()
         {
             return meals;

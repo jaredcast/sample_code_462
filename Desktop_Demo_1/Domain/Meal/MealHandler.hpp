@@ -28,9 +28,6 @@ namespace Domain::Meal
         struct SessionException : std::runtime_error { using runtime_error::runtime_error; };
         struct   BadCommand : SessionException { using SessionException::SessionException; };
 
-        // Object Factory returning a specialized object specific to the specified user and role
-        
-
         // Destructor
         // Pure virtual destructor helps force the class to be abstract, but must still be implemented
         virtual ~MealHandler() noexcept = 0;
